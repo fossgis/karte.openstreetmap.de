@@ -4,13 +4,19 @@
     <title>OpenStreetMap Landkarte</title>
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- external JS and CSS -->
+    <!-- TODO: we should replace them with locally hosted libraries-->
+    <script src="https://unpkg.com/maplibre-gl@^5.6.1/dist/maplibre-gl.js"></script>
+    <link href="https://unpkg.com/maplibre-gl@^5.6.1/dist/maplibre-gl.css" rel="stylesheet" />
+    
+    <!-- local JS and CSS-->
     <link rel="stylesheet" href="index.css">
     <script type="module" src="index.js" defer></script>
 </head>
 <body>
         <noscript><strong>Please enable JavaScript to view this page correctly.</strong></noscript>
-         <main>
-            <p>Hier entsteht die Landkarte von https://openstreetmap.de</p>
-        </main>
+	<div id="map"></div>
+
 </body>
 </html>
