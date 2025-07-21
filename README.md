@@ -26,3 +26,7 @@ biome check
 biome check --fix
 ```
 
+## External libraries
+
+External libraries shall be downloaded to `public/lib/<add-official-name-of-library>` and added to the git repo.
+
