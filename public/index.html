@@ -1,22 +1,46 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <title>OpenStreetMap Landkarte</title>
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- external JS and CSS -->
-    <!-- TODO: we should replace them with locally hosted libraries-->
-    <script src="https://unpkg.com/maplibre-gl@^5.6.1/dist/maplibre-gl.js"></script>
-    <link href="https://unpkg.com/maplibre-gl@^5.6.1/dist/maplibre-gl.css" rel="stylesheet" />
-    
-    <!-- local JS and CSS-->
+    <meta name="description"
+        content="Interaktive Karte auf Basis von OpenStreetMap – entdecke freie, aktuelle und gemeinschaftlich gepflegte Geodaten für Navigation, Planung und Visualisierung.">
+
     <link rel="stylesheet" href="index.css">
     <script type="module" src="index.js" defer></script>
 </head>
+
 <body>
-        <noscript><strong>Please enable JavaScript to view this page correctly.</strong></noscript>
-	<div id="map"></div>
+    <noscript>
+        <p lang="de">
+            <strong>Bitte aktivieren Sie JavaScript, um diese Webseite korrekt anzeigen zu können.</strong>
+        </p>
+        <p lang="en">
+            <strong>Please enable JavaScript to view this website correctly.</strong>
+        </p>
+    </noscript>
+
+    <osmde-map-libre map-style="https://pnorman.github.io/tilekiln-shortbread-demo/colorful.json" zoom="5"
+        center="10,51" controls='[
+        { "type": "NavigationControl", "options": {}, "position": "top-right" },
+        { "type": "ScaleControl", "options": { "maxWidth": "100", "unit": "metric"}, "position": "bottom-left" },
+        { "type": "FullscreenControl", "options": {}, "position": "top-left" },
+        { "type": "GeolocateControl", "options": {}, "position": "top-left" },
+        { "type": "AttributionControl", "options": {}, "position": "bottom-right" }
+        ]'>
+    </osmde-map-libre>
+
+    <osmde-layer-tree baselayers='[
+    { "name": "maplibre demotiles", "type": "vector", "url": "https://demotiles.maplibre.org/style.json" },
+    { "name": "osm raster", "type": "raster", "url": "https://tile.openstreetmap.org/{z}/{x}/{y}.png" },
+    { "name": "satellit", "type": "raster", "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" },
+    { "name": "osm vector", "type": "vector", "url": "https://pnorman.github.io/tilekiln-shortbread-demo/colorful.json" }
+    ]'></osmde-layer-tree>
+
+    <osmde-geocoder-router></osmde-geocoder-router>
 
 </body>
+
 </html>

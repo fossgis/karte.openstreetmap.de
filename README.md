@@ -7,7 +7,14 @@ This repository contains the map from [https://openstreetmap.de](https://openstr
 Run via:
 
 ```shell
+# node
+npx http-server public -c-1
+
+# python
 python3 -m http.server 8000 --directory public
+
+# php
+php -S localhost:8000 -t public
 ```
 
 Open your browser on [http://0.0.0.0:8000/](http://0.0.0.0:8000/) to see the website.
@@ -25,4 +32,3 @@ biome check
 # automatically fix files
 biome check --fix
 ```
-

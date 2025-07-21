@@ -1,0 +1,38 @@
+.geocoder-container {
+  padding: 10px;
+  background: white;
+  font-family: sans-serif;
+  max-width: 250px;
+}
+
+/* Formularelemente */
+#geocoderForm {
+  margin: 0;
+}
+
+#geocoderForm label {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+#geocoderForm input {
+  width: 100%;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+#geocoderForm button {
+  width: 100%;
+  font-size: 14px;
+  background-color: var(--link-color);
+  color: white;
+  border: none;
+  padding: 5px;
+}
+
+#geocoderOutput {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #333;
+}

@@ -1,10 +1,8 @@
-body {
-  margin: 0;
-  padding: 0;
-}
+@import "./styles/reset.css";
+@import "./styles/variables.css";
 
-html,
-body,
-#map {
-  height: 100%;
-}
+@import "./lib/css/maplibre-gl.css";
+
+@import "./components/map-libre/map-libre.css";
+@import "./components/layer-tree/layer-tree.css";
+@import "./components/geocoder-router/geocoder-router.css";

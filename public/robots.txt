@@ -1,0 +1,21 @@
+# robots.txt für https://karte.openstreetmap.de/
+# Diese Datei steuert, welche Bereiche Suchmaschinen crawlen dürfen.
+
+# Gilt für alle Suchmaschinen
+User-agent: *
+
+# Verhindert das Crawlen aller Verzeichnisse (alle Pfade mit mindestens einem Slash)
+Disallow: /*/
+
+# Erlaubt ausdrücklich die Startseite und alle Ressourcen direkt im Root (z.B. /index.html, /logo.png)
+Allow: /
+
+###
+# Wir möchten später das Verzeichnis /beispielverzeichnis/ und dessen Inhalte erlauben.
+###
+
+# Erlaubt den Zugriff auf /beispielverzeichnis/ selbst
+# Allow: /beispielverzeichnis/
+
+# Erlaubt den Zugriff auf alle Inhalte innerhalb von /beispielverzeichnis/
+# Allow: /beispielverzeichnis/*

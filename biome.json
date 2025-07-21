@@ -1,7 +1,12 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
   "files": {
-    "includes": ["public/**/*.js", "public/**/*.css"]
+    "includes": [
+      "public/**/*.js",
+      "public/**/*.css",
+      "!public/lib/js/maplibre-gl.js",
+      "!public/lib/css/maplibre-gl.css"
+    ]
   },
   "formatter": {
     "enabled": true,
