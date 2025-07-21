@@ -14,7 +14,7 @@ Open your browser on [http://0.0.0.0:8000/](http://0.0.0.0:8000/) to see the web
 
 ## Code Quality
 
-For checking code quality in JavaScript and CSS files we use [Biome](https://biomejs.dev/). It can be installed as binary on all operation systems.
+For checking code quality in JavaScript and CSS files we use [Biome](https://biomejs.dev/). It can be installed as binary on all operating systems.
 
 How to run:
 
