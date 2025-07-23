@@ -5,10 +5,26 @@
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
    <meta name="description" content="OpenStreetMap ist eine frei editierbare Weltkarte, erstellt von einer globalen Community – offen, kostenlos, für alle.">
+    
+    <!-- external JS and CSS -->
+    <script src="/lib/maplibre-gl/maplibre-gl.js"></script>
+    <link href="/lib/maplibre-gl/maplibre-gl.css" rel="stylesheet" />
+    
+    <!-- local JS and CSS-->
+    <link rel="stylesheet" href="index.css">
+    <script type="module" src="index.js" defer></script>
+
 </head>
 <body>
-
-<p>Hier entsteht die Landkarte von https://openstreetmap.de</p>
+        <noscript>
+		<p lang="en">
+		    <strong>Please enable JavaScript to view this website correctly.</strong>
+		</p>
+		<p lang="de">
+		    <strong>Bitte aktivieren Sie JavaScript, um diese Webseite korrekt anzeigen zu können.</strong>
+		</p>
+        </noscript>
+	<div id="map"></div>
 
 </body>
 </html>
