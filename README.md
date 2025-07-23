@@ -12,7 +12,6 @@ python3 -m http.server 8000 --directory public
 
 Open your browser on [http://0.0.0.0:8000/](http://0.0.0.0:8000/) to see the website.
 
-<<<<<<< HEAD
 ## Code Quality
 
 For checking code quality in JavaScript and CSS files we use [Biome](https://biomejs.dev/). It can be installed as binary on all operating systems.
@@ -29,9 +28,5 @@ biome check --fix
 
 ## External libraries
 
-=======
-## External libraries
-
->>>>>>> 37cce5b29b69f2ea556eed32028545a6a922d5b1
 External libraries shall be downloaded to `public/lib/<add-official-name-of-library>` and added to the git repo.
 
