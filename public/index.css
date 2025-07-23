@@ -1,3 +1,8 @@
+@import "./lib/maplibre-gl/maplibre-gl.css";
+
+@import "./components/map-libre/map-libre.css";
+@import "./components/layer-tree/layer-tree.css";
+
 body {
   margin: 0;
   padding: 0;
