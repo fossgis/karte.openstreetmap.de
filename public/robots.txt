@@ -1,0 +1,10 @@
+# robots.txt for https://karte.openstreetmap.de/
+
+# Applies to all search engines
+User-agent: *
+
+# Prevents crawling of all directories (all paths with at least one slash)
+Disallow: /*/
+
+# Explicitly allows the homepage and all resources directly in the root (e.g., /index.html, /favicon.svg ...)
+Allow: /
