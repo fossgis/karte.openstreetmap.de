@@ -26,7 +26,10 @@ biome check
 biome check --fix
 ```
 
-## External libraries
+## Libraries
+
+Including many JavaScript and CSS files with `<script>` and `<link>` tags can make `index.html` messy. Instead, we use `@import` in `index.css` and `import` in `index.js`, so that only these two files need to be included in the HTML.
+
+### External libraries
 
 External libraries shall be downloaded to `public/lib/<add-official-name-of-library>` and added to the git repo.
-
