@@ -59,6 +59,7 @@ class MapLibreComponent extends HTMLElement {
     },
     { type: "FullscreenControl", options: {}, position: "top-left" },
     { type: "GeolocateControl", options: {}, position: "top-left" },
+    { type: "AttributionControl", options: {compact: false}, position: "bottom-right" },
   ];
 
   // Getter und Setter für mapStyle (style)
@@ -219,6 +220,7 @@ class MapLibreComponent extends HTMLElement {
       this.map = new maplibregl.Map({
         ...this.#properties,
         hash: container,
+        attributionControl: false,
         container,
       });
 
