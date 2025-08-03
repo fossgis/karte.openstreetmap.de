@@ -24,7 +24,7 @@ const boundsGermany = [
   [16, 56],
 ];
 
-new maplibregl.Map({
+const map = new maplibregl.Map({
   container: "map",
   bounds: boundsGermany,
   style: style,
@@ -32,3 +32,5 @@ new maplibregl.Map({
   dragRotate: false,
   touchZoomRotate: false,
 });
+
+map.addControl(new maplibregl.ScaleControl({}));
