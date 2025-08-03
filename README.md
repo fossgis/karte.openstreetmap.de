@@ -26,9 +26,10 @@ biome check
 biome check --fix
 ```
 
-## External libraries
+## Libraries
 
-External libraries shall be downloaded to `public/lib/external/<add-official-name-of-library>` and added to the git repo. Documentation of the external libraries we use can be found in the `fetchExternalLibs.sh` file located in the `/scripts` directory. This file also allows for quick restore or updating of the external libraries.
+External libraries shall be downloaded to `public/lib/external/<add-official-name-of-library>` and added to the git repo. JavaScript/CSS files are included directly in `index.js` and `index.css`.
+Documentation of the external libraries we use can be found in the `fetchExternalLibs.sh` file located in the `/scripts` directory. This file also allows for quick restore or updating of the external libraries.
 
 ```shell
 ./scripts/fetchExternalLibs.sh

@@ -1,3 +1,5 @@
+import "./lib/external/maplibre-gl/maplibre-gl.js";
+
 const style = {
   version: 8,
   sources: {
