@@ -28,7 +28,8 @@ biome check --fix
 
 ## External libraries
 
-External libraries shall be downloaded to `public/lib/extern/<add-official-name-of-library>` and added to the git repo. Documentation of the external libraries we use can be found in the `fetchExternalLibs.sh` file located in the `/build` directory. This file also allows for quick restore or updating of the external libraries.
+External libraries shall be downloaded to `public/lib/external/<add-official-name-of-library>` and added to the git repo. Documentation of the external libraries we use can be found in the `fetchExternalLibs.sh` file located in the `/scripts` directory. This file also allows for quick restore or updating of the external libraries.
 
 ```shell
 ./scripts/fetchExternalLibs.sh
+```
