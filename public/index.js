@@ -32,6 +32,6 @@ new maplibregl.Map({
   dragRotate: false,
   touchZoomRotate: false,
   attributionControl: {
-    compact: false
-  }
+    compact: false,
+  },
 });
