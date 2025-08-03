@@ -31,4 +31,7 @@ new maplibregl.Map({
   maplibreLogo: false,
   dragRotate: false,
   touchZoomRotate: false,
+  attributionControl: {
+    compact: false
+  }
 });
