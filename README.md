@@ -26,7 +26,6 @@ biome check
 biome check --fix
 ```
 
-## External libraries
+## Libraries
 
-External libraries shall be downloaded to `public/lib/<add-official-name-of-library>` and added to the git repo.
-
+External libraries shall be downloaded to `public/lib/<add-official-name-of-library>` and added to the git repo. JavaScript/CSS files are included directly in `index.js` and `index.css`.
