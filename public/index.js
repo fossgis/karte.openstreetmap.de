@@ -26,11 +26,16 @@ const boundsGermany = [
   [16, 56],
 ];
 
-new maplibregl.Map({
+const map = new maplibregl.Map({
   container: "map",
   bounds: boundsGermany,
   style: style,
   maplibreLogo: false,
   dragRotate: false,
   touchZoomRotate: false,
+  attributionControl: {
+    compact: false,
+  },
 });
+
+map.addControl(new maplibregl.ScaleControl({}));
