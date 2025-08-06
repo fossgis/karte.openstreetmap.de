@@ -1,4 +1,4 @@
-import "./lib/maplibre-gl/maplibre-gl.js";
+import "./lib/external/maplibre-gl/maplibre-gl.js";
 import { registerLayerTreeComponent } from "./components/layer-tree/layer-tree.js";
 import { registerMapLibreComponent } from "./components/map-libre/map-libre.js";
 

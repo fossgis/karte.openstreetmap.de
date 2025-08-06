@@ -1,4 +1,4 @@
-@import "./lib/maplibre-gl/maplibre-gl.css";
+@import "./lib/external/maplibre-gl/maplibre-gl.css";
 
 @import "./components/map-libre/map-libre.css";
 @import "./components/layer-tree/layer-tree.css";

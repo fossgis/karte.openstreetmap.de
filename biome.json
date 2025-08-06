@@ -4,8 +4,8 @@
     "includes": [
       "public/**/*.js",
       "public/**/*.css",
-      "!public/lib/**",
-      "!public/tests/lib/**"
+      "!public/lib/external/**",
+      "!public/tests/lib/external/**"
     ]
   },
   "formatter": {

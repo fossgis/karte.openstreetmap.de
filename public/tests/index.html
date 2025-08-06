@@ -7,21 +7,21 @@
     <link rel="icon" href="../favicon.ico">
     <link rel="stylesheet" href="../index.css">
     <!-- https://unpkg.com/mocha@9.2.2/mocha.css -->
-    <link rel="stylesheet" href="./lib/extern/mocha/mocha.css" />
+    <link rel="stylesheet" href="./lib/external/mocha/mocha.css" />
     <!-- https://unpkg.com/chai@4.3.6/chai.js -->
-    <script src="./lib/extern/mocha/chai.js" defer></script>
+    <script src="./lib/external/mocha/chai.js" defer></script>
     <!-- https://unpkg.com/mocha@9.2.2/mocha.js -->
-    <script src="./lib/extern/mocha/mocha.js" defer></script>
+    <script src="./lib/external/mocha/mocha.js" defer></script>
     <!-- https://unpkg.com/@testing-library/dom@8.17.1/dist/@testing-library/dom.umd.js -->
-    <script src="./lib/extern/@testing-library/dom.umd.js" defer></script>
+    <script src="./lib/external/@testing-library/dom.umd.js" defer></script>
 
     <script type="module" class="mocha-init" defer>
         mocha.setup('bdd');
         mocha.checkLeaks();
     </script>
 
-    <link rel="stylesheet" href="../lib/maplibre-gl/maplibre-gl.css" />
-    <script type="module" src="../lib/maplibre-gl/maplibre-gl.js" defer></script>
+    <link rel="stylesheet" href="../lib/external/maplibre-gl/maplibre-gl.css" />
+    <script type="module" src="../lib/external/maplibre-gl/maplibre-gl.js" defer></script>
 
     <script type="module" src="./map-libre.test.js" defer></script>
 
