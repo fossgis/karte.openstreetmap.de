@@ -1,0 +1,9 @@
+osmde-map-libre {
+  display: block;
+  height: 100%;
+}
+
+osmde-map-libre > .map {
+  height: 100%;
+  width: 100%;
+}

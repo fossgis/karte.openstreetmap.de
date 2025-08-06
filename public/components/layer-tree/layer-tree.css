@@ -1,0 +1,31 @@
+.layer-tree-container {
+  padding: 5px;
+  background: white;
+  font-family: sans-serif;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.layer-tree-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.layer-tree-button {
+  display: inline-block;
+  padding: 10px 12px;
+  cursor: pointer;
+  user-select: none;
+}
+.layer-tree-button:hover {
+  background-color: #efefef;
+}
