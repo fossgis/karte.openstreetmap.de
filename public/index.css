@@ -1,4 +1,4 @@
-@import "./lib/maplibre-gl/maplibre-gl.css";
+@import "./lib/external/maplibre-gl/maplibre-gl.css";
 
 body {
   margin: 0;
