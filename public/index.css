@@ -1,5 +1,9 @@
 @import "./lib/external/maplibre-gl/maplibre-gl.css";
 
+:root {
+  --osm-green: #7ebc6f;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -10,3 +14,31 @@ body,
 #map {
   height: 100%;
 }
+
+/*notice start*/
+#notice {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 90%;
+  background: #fff;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+#notice button {
+  background: #fff;
+  border: solid var(--osm-green);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: #000;
+}
+
+#notice button:focus,
+#notice button:hover {
+  background: color-mix(in srgb, var(--osm-green) 80%, black);
+  outline: 3px solid #444;
+  outline-offset: 2px;
+}
+/*notice end*/
