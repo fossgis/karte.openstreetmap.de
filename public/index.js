@@ -30,7 +30,7 @@ const map = new maplibregl.Map({
   container: "map",
   bounds: boundsGermany,
   style: style,
-  hash: "osmdeHash",
+  hash: "p",
   maplibreLogo: false,
   dragRotate: false,
   touchZoomRotate: false,
