@@ -1,7 +1,12 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
   "files": {
-    "includes": ["public/**/*.js", "public/**/*.css", "!public/lib/external/**"]
+    "includes": [
+      "public/**/*.js",
+      "public/**/*.css",
+      "public/**/*.html",
+      "!public/lib/external/**"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -17,5 +22,8 @@
     "formatter": {
       "quoteStyle": "double"
     }
+  },
+  "html": {
+    "formatter": { "enabled": true }
   }
 }
