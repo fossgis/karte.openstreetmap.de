@@ -38,4 +38,4 @@ const map = new maplibregl.Map({
   },
 });
 
-map.addControl(new maplibregl.ScaleControl({}));
+map.addControl(new maplibregl.ScaleControl());
