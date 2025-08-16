@@ -39,3 +39,8 @@ const map = new maplibregl.Map({
 });
 
 map.addControl(new maplibregl.ScaleControl({}));
+
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get("tests") === "1") {
+  window.__map__ = map;
+}

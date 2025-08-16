@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <title>Karte Openstreetmap Deutschland - Tests</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1"
+    >
+    <link rel="icon" href="http://127.0.0.1:8000/favicon.ico">
+    <link rel="stylesheet" href="./lib/external/mocha/mocha.css">
+    <script src="./lib/external/mocha/chai.js" defer></script>
+    <script src="./lib/external/mocha/mocha.js" defer></script>
+    <script src="./lib/external/@testing-library/dom.umd.js" defer></script>
+
+    <script type="module" class="mocha-init" defer>
+        mocha.setup('bdd');
+        mocha.checkLeaks();
+    </script>
+
+    <link
+      rel="stylesheet"
+      href="http://127.0.0.1:8000/lib/external/maplibre-gl/maplibre-gl.css"
+    >
+    <script
+      type="module"
+      src="http://127.0.0.1:8000/lib/external/maplibre-gl/maplibre-gl.js"
+      defer
+    ></script>
+
+    <script type="module" src="./map-libre.test.js" defer></script>
+
+    <!-- more tests here -->
+
+    <script type="module" class="mocha-exec" src="./index.js" defer></script>
+  </head>
+
+  <body>
+    <div id="mocha"></div>
+  </body>
+</html>

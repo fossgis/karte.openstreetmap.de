@@ -35,3 +35,30 @@ External libraries shall be downloaded to `public/lib/external/<add-official-nam
 ```
 
 JavaScript/CSS files are included directly in `index.js` and `index.css`.
+
+## Tests
+
+External libraries for testing are downloaded into `tests/lib/external/<official-library-name>`.
+These files are not tracked by git (see `.gitignore`).
+
+The script `tests/scripts/fetchExternalLibs.sh` documents which libraries are used and can be used to download or update them:
+
+```sh
+./tests/scripts/fetchExternalLibs.sh
+```
+
+To start the local test setup, run the Python script:
+
+```sh
+python3 ./tests/scripts/startTests.sh
+```
+
+This will launch a server on `http://127.0.0.1:8000`.
+
+* Open `http://127.0.0.1:8000/` → main app
+* Open `http://127.0.0.1:8000/tests/` → test runner output
+
+For examples of how to add new tests, see:
+
+* `tests/map-libre.test.js`
+* `tests/index.html`
