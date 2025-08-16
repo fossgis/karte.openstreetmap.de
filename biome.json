@@ -5,7 +5,11 @@
       "public/**/*.js",
       "public/**/*.css",
       "public/**/*.html",
-      "!public/lib/external/**"
+      "tests/**/*.js",
+      "tests/**/*.css",
+      "tests/**/*.html",
+      "!public/lib/external/**",
+      "!tests/lib/external"
     ]
   },
   "formatter": {
