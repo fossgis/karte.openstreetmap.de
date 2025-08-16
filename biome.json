@@ -5,7 +5,8 @@
       "public/**/*.js",
       "public/**/*.css",
       "public/**/*.html",
-      "!public/lib/external/**"
+      "!public/lib/external/**",
+      "biome.json"
     ]
   },
   "formatter": {
@@ -24,6 +25,9 @@
     }
   },
   "html": {
+    "formatter": { "enabled": true }
+  },
+  "json": {
     "formatter": { "enabled": true }
   }
 }
