@@ -30,10 +30,38 @@ const map = new maplibregl.Map({
   container: "map",
   bounds: boundsGermany,
   style: style,
+  hash: "map",
   maplibreLogo: false,
   dragRotate: false,
   touchZoomRotate: false,
-  attributionControl: true,
+  attributionControl: false,
 });
 
-map.addControl(new maplibregl.ScaleControl({}));
+// attributionControl start
+let attributionControl;
+let isCompact = null;
+
+function updateAttributionControl() {
+  const shouldBeCompact = window.innerWidth <= 640;
+
+  if (shouldBeCompact !== isCompact) {
+    if (attributionControl) {
+      map.removeControl(attributionControl);
+    }
+
+    attributionControl = new maplibregl.AttributionControl({
+      compact: shouldBeCompact,
+    });
+
+    map.addControl(attributionControl, "bottom-right");
+
+    isCompact = shouldBeCompact;
+  }
+}
+
+updateAttributionControl();
+
+window.addEventListener("resize", updateAttributionControl);
+// attributionControl end
+
+map.addControl(new maplibregl.ScaleControl());
