@@ -34,9 +34,7 @@ const map = new maplibregl.Map({
   maplibreLogo: false,
   dragRotate: false,
   touchZoomRotate: false,
-  attributionControl: {
-    compact: false,
-  },
+  attributionControl: true,
 });
 
 map.addControl(new maplibregl.ScaleControl());
