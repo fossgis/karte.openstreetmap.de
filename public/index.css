@@ -18,6 +18,10 @@ header {
   align-items: center;
 }
 
+.logo {
+  height: 40px;
+}
+
 main {
   flex: 1;
 }
