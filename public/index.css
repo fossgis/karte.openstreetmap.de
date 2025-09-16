@@ -8,7 +8,7 @@ body {
 }
 
 header {
-  padding: 1rem;
+  padding: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,7 +36,6 @@ main {
   position: absolute;
   top: 100%;
   left: 0;
-  background: #fff;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -48,23 +47,6 @@ main {
   display: block;
 }
 
-.dropdown-menu li a {
-  display: block;
-  padding: 0.5rem 0.75rem;
-  color: inherit;
-  text-decoration: none;
-}
-
-.btn {
-  display: inline-block;
-  padding: 0.5rem 0.75rem;
-  background: #fff;
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 .external-link-indicator {
   margin-left: 0.25rem;
-  font-size: 0.8em;
 }
