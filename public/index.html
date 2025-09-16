@@ -35,13 +35,47 @@
     <header>
       <img src="/img/osmde.svg" alt="OpenStreetMap Deutschland" class="logo">
       <span>
-        <a href="https://routing.openstreetmap.de" target="_blank"
-          >Routenplanung</a
-        >
-        <a href="https://www.openstreetmap.org/note/new" target="_blank"
+        <span class="dropdown">
+          <a
+            href="https://routing.openstreetmap.de"
+            target="_blank"
+            class="dropdown-toggle btn"
+            >Routenplanung</a
+          >
+          <ul class="dropdown-menu">
+            <li>
+              <a href="https://graphhopper.com/maps" target="_blank"
+                >GraphHopper</a
+              >
+            </li>
+            <li>
+              <a href="https://openrouteservice.org/directions" target="_blank"
+                >Openrouteservice</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://routing.openstreetmap.de/"
+                target="_blank"
+                >OSRM</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://valhalla.openstreetmap.de/directions"
+                target="_blank"
+                >Valhalla</a
+              >
+            </li>
+          </ul>
+        </span>
+        <a
+          class="btn"
+          href="https://www.openstreetmap.org/note/new"
+          target="_blank"
           >Fehler melden</a
         >
-        <a href="https://www.openstreetmap.org/edit" target="_blank"
+        <a class="btn" href="https://www.openstreetmap.org/edit" target="_blank"
           >Karte editieren</a
         >
       </span>

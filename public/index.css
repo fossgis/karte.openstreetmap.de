@@ -29,3 +29,59 @@ main {
 #map {
   height: 100%;
 }
+
+/* Minimal dropdown styling */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  min-width: 260px;
+  padding: 0.25rem 0;
+  margin: 0.25rem 0 0;
+  list-style: none;
+  z-index: 10;
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li a:focus {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+
+/* Buttons for header links */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  margin-left: 0.5rem;
+}
+
+.btn:hover,
+.btn:focus {
+  background: rgba(0, 0, 0, 0.04);
+}
