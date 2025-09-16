@@ -36,9 +36,11 @@ main {
   position: absolute;
   top: 100%;
   left: 0;
+  background: #fff;
+  border: 1px solid #ccc;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0.25rem 0;
   z-index: 10;
 }
 
