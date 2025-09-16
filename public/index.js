@@ -30,6 +30,7 @@ const map = new maplibregl.Map({
   container: "map",
   bounds: boundsGermany,
   style: style,
+  hash: "map",
   maplibreLogo: false,
   dragRotate: false,
   touchZoomRotate: false,
@@ -38,4 +39,6 @@ const map = new maplibregl.Map({
   },
 });
 
-map.addControl(new maplibregl.ScaleControl({}));
+map.addControl(new maplibregl.ScaleControl());
+
+map.addControl(new maplibregl.GeolocateControl());
