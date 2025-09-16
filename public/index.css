@@ -44,7 +44,9 @@ main {
   z-index: 10;
 }
 
-details[open] > .dropdown-menu { display: block; }
+details[open] > .dropdown-menu {
+  display: block;
+}
 
 .btn {
   display: inline-block;
