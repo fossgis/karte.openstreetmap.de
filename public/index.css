@@ -79,6 +79,9 @@ main {
   color: inherit;
   background: #fff;
   margin-left: 0.5rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 .btn:hover,
