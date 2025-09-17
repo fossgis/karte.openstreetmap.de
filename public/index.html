@@ -32,48 +32,84 @@
       </p>
     </noscript>
 
-    <header>
-      <img src="/img/osmde.svg" alt="OpenStreetMap Deutschland" class="logo">
-      <span>
-        <details class="dropdown">
-          <summary class="dropdown-toggle btn">Routenplanung</summary>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="https://graphhopper.com/maps" target="_blank"
-                >GraphHopper<span class="external-link-indicator">↗</span></a
-              >
-            </li>
-            <li>
-              <a href="https://openrouteservice.org/directions" target="_blank"
-                >Openrouteservice<span class="external-link-indicator"
-                  >↗</span
-                ></a
-              >
-            </li>
-            <li>
-              <a href="https://routing.openstreetmap.de/" target="_blank"
-                >OSRM<span class="external-link-indicator">↗</span></a
-              >
-            </li>
-            <li>
-              <a
-                href="https://valhalla.openstreetmap.de/directions"
-                target="_blank"
-                >Valhalla<span class="external-link-indicator">↗</span></a
-              >
-            </li>
-          </ul>
-        </details>
-        <a
-          class="btn"
-          href="https://www.openstreetmap.org/note/new"
-          target="_blank"
-          >Fehler melden<span class="external-link-indicator">↗</span></a
-        >
-        <a class="btn" href="https://www.openstreetmap.org/edit" target="_blank"
-          >Karte editieren<span class="external-link-indicator">↗</span></a
-        >
-      </span>
+    <header class="header">
+      <a href="/">
+        <img src="/img/osmde.svg" alt="OpenStreetMap Deutschland" class="logo">
+      </a>
+      <input
+        type="checkbox"
+        id="menu-toggle"
+        class="menu-toggle"
+        aria-label="Menu"
+      >
+      <label for="menu-toggle" class="hamburger" aria-expanded="false">☰</label>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li>
+            <details class="dropdown">
+              <summary class="dropdown-toggle btn">Routenplanung</summary>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="https://graphhopper.com/maps" target="_blank"
+                    >GraphHopper<span class="external-link-indicator"
+                      >↗</span
+                    ></a
+                  >
+                </li>
+                <li>
+                  <a href="https://brouter.de/brouter-web" target="_blank">
+                    BRouter<span class="external-link-indicator">↗</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://openrouteservice.org/directions"
+                    target="_blank"
+                    >Openrouteservice<span class="external-link-indicator"
+                      >↗</span
+                    ></a
+                  >
+                </li>
+                <li>
+                  <a href="https://routing.openstreetmap.de/" target="_blank"
+                    >OSRM<span class="external-link-indicator">↗</span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://valhalla.openstreetmap.de/directions"
+                    target="_blank"
+                    >Valhalla<span class="external-link-indicator">↗</span></a
+                  >
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <a
+              class="btn"
+              href="https://www.openstreetmap.org/note/new"
+              target="_blank"
+              >Fehler melden<span class="external-link-indicator">↗</span></a
+            >
+          </li>
+          <li>
+            <a
+              class="btn"
+              href="https://www.openstreetmap.org/edit"
+              target="_blank"
+              >Karte editieren<span class="external-link-indicator">↗</span></a
+            >
+          </li>
+          <li>
+            <a class="btn" href="https://www.openstreetmap.de/" target="_blank"
+              >Über OpenStreetMap<span class="external-link-indicator"
+                >↗</span
+              ></a
+            >
+          </li>
+        </ul>
+      </nav>
     </header>
 
     <main id="map"/>
