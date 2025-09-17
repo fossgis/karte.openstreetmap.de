@@ -36,16 +36,23 @@
       <a href="/">
         <img src="/img/osmde.svg" alt="OpenStreetMap Deutschland" class="logo">
       </a>
+      
+      <!-- Hidden checkbox for mobile menu toggle  -->
       <input
         type="checkbox"
         id="menu-toggle"
         class="menu-toggle"
         aria-label="Menu"
       >
+
+      <!-- Hamburger button (visible only on mobile) -->
       <label for="menu-toggle" class="hamburger" aria-expanded="false">☰</label>
+      
+      <!-- Main navigation menu -->
       <nav class="nav">
         <ul class="nav-list">
           <li>
+            <!-- Dropdown menu for routing services -->
             <details class="dropdown">
               <summary class="dropdown-toggle btn">Routenplanung</summary>
               <ul class="dropdown-menu">
@@ -85,6 +92,7 @@
               </ul>
             </details>
           </li>
+          <!-- Links -->
           <li>
             <a
               class="btn"
@@ -112,6 +120,7 @@
       </nav>
     </header>
 
+    <!-- Map container -->
     <main id="map"/>
   </body>
 </html>
