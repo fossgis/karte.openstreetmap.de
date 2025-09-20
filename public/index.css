@@ -3,12 +3,9 @@
 
 /* copied from openstreetmap.de */
 :root {
-  --primary: #c2edac;
-  --primary-darker: #619645;
   --grey: #f8f8f8;
   --border-color: #ccc;
-  --contrast-color: #ff6b8c;
-  --link-color: #606060;
+  --link-color: black;
 }
 
 body {
@@ -52,11 +49,15 @@ main {
 
 .btn {
   display: inline-block;
-  padding: 0.5rem;
-  border: 1px solid var(--border-color);
+  padding: 2px 12px 6px;
   text-decoration: none;
   margin-left: 0.5rem;
   color: var(--link-color);
+  border-radius: 3px;
+}
+
+.btn:hover {
+  background-color: var(--grey);
 }
 
 .external-link-indicator {
