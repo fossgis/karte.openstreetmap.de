@@ -1,12 +1,151 @@
 @import "./lib/external/maplibre-gl/maplibre-gl.css";
 
-body {
-  margin: 0;
-  padding: 0;
+
+/* copied from openstreetmap.de */
+:root {
+  --primary: #c2edac;
+  --primary-darker: #619645;
+  --grey: #f8f8f8;
+  --border-color: #ccc;
+  --contrast-color: #ff6b8c;
+  --link-color: #606060;
 }
 
-html,
-body,
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
 #map {
   height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+}
+
+.logo {
+  height: 40px;
+}
+
+.nav {
+  margin-left: auto;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.5rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  text-decoration: none;
+  margin-left: 0.5rem;
+  color: var(--link-color);
+}
+
+.external-link-indicator {
+  margin-left: 0.25rem;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 0;
+  z-index: 10;
+}
+
+details[open] > .dropdown-menu {
+  display: block;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+    order: 2;
+  }
+
+  .nav {
+    order: 1;
+    margin-left: 0;
+  }
+
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-top: none;
+    padding: 1rem;
+    z-index: 10;
+  }
+
+  .menu-toggle:checked ~ .nav .nav-list {
+    display: flex;
+  }
+
+  .nav-list .btn {
+    margin: 0;
+  }
+
+  .dropdown-menu {
+    position: static;
+    display: block;
+    border: none;
+    background: var(--grey);
+    margin-top: 0.5rem;
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .dropdown-menu a:last-child {
+    border-bottom: none;
+  }
 }
