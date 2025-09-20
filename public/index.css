@@ -129,6 +129,12 @@ details[open] > .dropdown-menu {
 
   .nav-list .btn {
     margin: 0;
+    border: none;
+    background: none;
+    padding: 0.75rem 0;
+    text-align: left;
+    width: 100%;
+    display: block;
   }
 
   .dropdown-menu {
@@ -141,8 +147,10 @@ details[open] > .dropdown-menu {
 
   .dropdown-menu a {
     display: block;
-    padding: 0.5rem;
+    padding: 0.5rem 0;
     border-bottom: 1px solid var(--border-color);
+    text-decoration: none;
+    color: var(--link-color);
   }
 
   .dropdown-menu a:last-child {
