@@ -47,7 +47,7 @@ main {
   gap: 0.5rem;
 }
 
-.btn {
+.menu-item {
   display: inline-block;
   padding: 2px 12px 6px;
   text-decoration: none;
@@ -56,7 +56,7 @@ main {
   border-radius: 3px;
 }
 
-.btn:hover {
+.menu-item :hover {
   background-color: var(--grey);
 }
 
@@ -64,7 +64,7 @@ main {
   margin-left: 0.25rem;
 }
 
-.btn img {
+.menu-item img {
   position: relative;
   top: 4px;
   width: 20px;
@@ -96,20 +96,20 @@ details[open] > .dropdown-menu {
   display: none;
 }
 
-.hamburger {
+.hamburger-menu {
   display: none;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
-  margin-left: auto;
 }
 
 @media (max-width: 768px) {
-  .hamburger {
+  .hamburger-menu {
     display: block;
     order: 2;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: auto;
   }
 
   .nav {
@@ -135,7 +135,7 @@ details[open] > .dropdown-menu {
     display: flex;
   }
 
-  .nav-list .btn {
+  .nav-list .menu-item  {
     margin: 0;
     border: none;
     background: none;
