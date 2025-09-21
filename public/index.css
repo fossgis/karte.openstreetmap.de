@@ -64,6 +64,13 @@ main {
   margin-left: 0.25rem;
 }
 
+.btn img {
+  position: relative;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+}
+
 .dropdown {
   position: relative;
 }
