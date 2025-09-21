@@ -56,7 +56,7 @@ main {
   border-radius: 3px;
 }
 
-.menu-item :hover {
+.menu-item:hover {
   background-color: var(--grey);
 }
 
