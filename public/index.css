@@ -1,13 +1,13 @@
 @import "./lib/external/maplibre-gl/maplibre-gl.css";
 
-
-/* copied from openstreetmap.de */
+/* Variables */
 :root {
   --grey: #f8f8f8;
   --border-color: #ccc;
   --link-color: black;
 }
 
+/* Layout */
 body {
   margin: 0;
   display: flex;
@@ -23,6 +23,7 @@ main {
   height: 100%;
 }
 
+/* Header */
 .header {
   display: flex;
   align-items: center;
@@ -39,6 +40,7 @@ main {
   margin-left: auto;
 }
 
+/* Navigation */
 .nav-list {
   display: flex;
   list-style: none;
@@ -50,18 +52,14 @@ main {
 .menu-item {
   display: inline-block;
   padding: 2px 12px 6px;
-  text-decoration: none;
   margin-left: 0.5rem;
+  text-decoration: none;
   color: var(--link-color);
   border-radius: 3px;
 }
 
 .menu-item:hover {
   background-color: var(--grey);
-}
-
-.external-link-indicator {
-  margin-left: 0.25rem;
 }
 
 .menu-item img {
@@ -71,6 +69,11 @@ main {
   height: 20px;
 }
 
+.external-link-indicator {
+  margin-left: 0.25rem;
+}
+
+/* Dropdown */
 .dropdown {
   position: relative;
 }
@@ -106,6 +109,7 @@ details[open] > .dropdown-menu {
   display: block;
 }
 
+/* Mobile menu */
 .menu-toggle {
   display: none;
 }
@@ -149,10 +153,8 @@ details[open] > .dropdown-menu {
     display: flex;
   }
 
-  .nav-list .menu-item  {
+  .nav-list .menu-item {
     margin: 0;
-    border: none;
-    background: none;
     padding: 0.75rem 0;
     text-align: left;
     width: 100%;
@@ -168,11 +170,8 @@ details[open] > .dropdown-menu {
   }
 
   .dropdown-menu a {
-    display: block;
     padding: 0.5rem 0;
     border-bottom: 1px solid var(--border-color);
-    text-decoration: none;
-    color: var(--link-color);
   }
 
   .dropdown-menu a:last-child {
