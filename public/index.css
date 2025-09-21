@@ -1,13 +1,16 @@
 @import "./lib/external/maplibre-gl/maplibre-gl.css";
 
-/* Variables */
 :root {
   --grey: #f8f8f8;
   --border-color: #ccc;
   --link-color: black;
 }
 
-/* Layout */
+
+#map {
+  height: 100%;
+}
+
 body {
   margin: 0;
   display: flex;
@@ -19,17 +22,16 @@ main {
   flex: 1;
 }
 
-#map {
-  height: 100%;
+a {
+  text-decoration: none;
 }
 
-/* Header */
 .header {
   display: flex;
   align-items: center;
-  padding: 0.5rem;
   border-bottom: 1px solid var(--border-color);
   position: relative;
+  padding: 5px;
 }
 
 .logo {
@@ -40,7 +42,6 @@ main {
   margin-left: auto;
 }
 
-/* Navigation */
 .nav-list {
   display: flex;
   list-style: none;
@@ -51,7 +52,6 @@ main {
 
 .menu-item {
   display: inline-block;
-  padding: 2px 12px 6px;
   margin-left: 0.5rem;
   text-decoration: none;
   color: var(--link-color);
@@ -69,11 +69,6 @@ main {
   height: 20px;
 }
 
-.external-link-indicator {
-  margin-left: 0.25rem;
-}
-
-/* Dropdown */
 .dropdown {
   position: relative;
 }
@@ -81,22 +76,16 @@ main {
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
   background: #fff;
   border: 1px solid var(--border-color);
   list-style: none;
-  margin: 0;
   padding: 0.25rem 0;
-  z-index: 10;
-  width: max-content;
-  min-width: 100%;
+  z-index: 1;
 }
 
 .dropdown-menu a {
   display: block;
   padding: 0.5rem 1rem;
-  text-decoration: none;
   color: var(--link-color);
   white-space: nowrap;
 }
@@ -109,7 +98,6 @@ details[open] > .dropdown-menu {
   display: block;
 }
 
-/* Mobile menu */
 .menu-toggle {
   display: none;
 }
@@ -121,9 +109,6 @@ details[open] > .dropdown-menu {
 @media (max-width: 768px) {
   .hamburger-menu {
     display: block;
-    order: 2;
-    background: none;
-    border: none;
     font-size: 1.5rem;
     cursor: pointer;
     padding: 0.5rem;
@@ -131,7 +116,6 @@ details[open] > .dropdown-menu {
   }
 
   .nav {
-    order: 1;
     margin-left: 0;
   }
 
@@ -143,10 +127,8 @@ details[open] > .dropdown-menu {
     left: 0;
     right: 0;
     background: #fff;
-    border: 1px solid var(--border-color);
-    border-top: none;
     padding: 1rem;
-    z-index: 10;
+    z-index: 3;
   }
 
   .menu-toggle:checked ~ .nav .nav-list {
@@ -156,25 +138,10 @@ details[open] > .dropdown-menu {
   .nav-list .menu-item {
     margin: 0;
     padding: 0.75rem 0;
-    text-align: left;
-    width: 100%;
-    display: block;
   }
 
   .dropdown-menu {
     position: static;
-    display: block;
     border: none;
-    background: var(--grey);
-    margin-top: 0.5rem;
-  }
-
-  .dropdown-menu a {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .dropdown-menu a:last-child {
-    border-bottom: none;
   }
 }
