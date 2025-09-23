@@ -37,6 +37,10 @@ const map = new maplibregl.Map({
   attributionControl: true,
 });
 
+if (window.matchMedia("(min-width: 640px)").matches) {
+  map.addControl(new maplibregl.NavigationControl(), "top-right");
+}
+
 map.addControl(new maplibregl.ScaleControl());
 
 map.addControl(new maplibregl.GeolocateControl());
