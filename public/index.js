@@ -1,4 +1,7 @@
 import "./lib/external/maplibre-gl/maplibre-gl.js";
+import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.min.js";
+
+import { createGeocoderControl } from "./lib/intern/osm-de-geocoder.js";
 
 const style = {
   version: 8,
@@ -40,3 +43,5 @@ const map = new maplibregl.Map({
 map.addControl(new maplibregl.ScaleControl());
 
 map.addControl(new maplibregl.GeolocateControl());
+
+map.addControl(createGeocoderControl());
