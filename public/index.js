@@ -37,7 +37,7 @@ const map = new maplibregl.Map({
   attributionControl: true,
 });
 
-if (window.matchMedia("(min-width: 640px)").matches) {
+if (window.matchMedia("(any-hover: hover)").matches) {
   map.addControl(new maplibregl.NavigationControl(), "top-right");
 }
 
