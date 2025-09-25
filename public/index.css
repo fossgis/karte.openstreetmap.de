@@ -23,6 +23,7 @@ main {
 
 a {
   text-decoration: none;
+  color: var(--link-color);
 }
 
 .header {
@@ -52,9 +53,11 @@ a {
 .menu-item {
   display: inline-block;
   margin-left: 0.5rem;
-  text-decoration: none;
-  color: var(--link-color);
   border-radius: 3px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font: inherit;
 }
 
 .menu-item:hover {
@@ -62,8 +65,7 @@ a {
 }
 
 .menu-item img {
-  position: relative;
-  top: 4px;
+  vertical-align: middle;
   width: 20px;
   height: 20px;
 }
@@ -78,8 +80,11 @@ a {
   background: #fff;
   border: 1px solid var(--border-color);
   list-style: none;
+  margin: 0;
   padding: 0.25rem 0;
-  z-index: 1;
+  z-index: 10;
+  min-width: 180px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .dropdown-toggle-checkbox:checked ~ .dropdown-toggle ~ .dropdown-menu {
@@ -89,7 +94,6 @@ a {
 .dropdown-menu a {
   display: block;
   padding: 0.5rem 1rem;
-  color: var(--link-color);
   white-space: nowrap;
 }
 
@@ -146,5 +150,7 @@ a {
   .dropdown-menu {
     position: static;
     border: none;
+    box-shadow: none;
+    min-width: 0;
   }
 }
