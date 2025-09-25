@@ -82,6 +82,10 @@ a {
   z-index: 1;
 }
 
+.dropdown-toggle-checkbox:checked ~ .dropdown-toggle ~ .dropdown-menu {
+  display: block;
+}
+
 .dropdown-menu a {
   display: block;
   padding: 0.5rem 1rem;
@@ -91,10 +95,6 @@ a {
 
 .dropdown-menu a:hover {
   background-color: var(--grey);
-}
-
-details[open] > .dropdown-menu {
-  display: block;
 }
 
 .menu-toggle {

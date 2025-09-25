@@ -53,69 +53,72 @@
       <!-- Main navigation menu -->
       <nav class="nav">
         <ul class="nav-list">
-          <li>
-            <!-- Dropdown menu for routing services -->
-            <details class="dropdown">
-              <summary class="dropdown-toggle menu-item">
-                <img src="/icons/analytics-outline.svg">
-                Routenplanung
-              </summary>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="https://graphhopper.com/maps" target="_blank"
-                    >GraphHopper<span>↗</span></a
-                  >
-                </li>
-                <li>
-                  <a href="https://brouter.de/brouter-web" target="_blank">
-                    BRouter<span>↗</span></a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="https://openrouteservice.org/directions"
-                    target="_blank"
-                    >Openrouteservice<span>↗</span></a
-                  >
-                </li>
-                <li>
-                  <a href="https://routing.openstreetmap.de/" target="_blank"
-                    >OSRM<span>↗</span></a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="https://valhalla.openstreetmap.de/directions"
-                    target="_blank"
-                    >Valhalla<span>↗</span></a
-                  >
-                </li>
-              </ul>
-            </details>
+          <li class="dropdown">
+            <input
+              type="checkbox"
+              id="dropdown-routing"
+              class="dropdown-toggle-checkbox"
+              hidden
+            >
+            <label for="dropdown-routing" class="dropdown-toggle menu-item">
+              <img src="/icons/analytics-outline.svg">
+              Routenplanung
+            </label>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://graphhopper.com/maps" target="_blank"
+                  >GraphHopper<span>↗</span></a
+                >
+              </li>
+              <li>
+                <a href="https://brouter.de/brouter-web" target="_blank"
+                  >BRouter<span>↗</span></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://openrouteservice.org/directions"
+                  target="_blank"
+                  >Openrouteservice<span>↗</span></a
+                >
+              </li>
+              <li>
+                <a href="https://routing.openstreetmap.de/" target="_blank"
+                  >OSRM<span>↗</span></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://valhalla.openstreetmap.de/directions"
+                  target="_blank"
+                  >Valhalla<span>↗</span></a
+                >
+              </li>
+            </ul>
           </li>
-          <li>
-            <!-- Dropdown menu for routing services -->
-            <details class="dropdown">
-              <summary class="dropdown-toggle menu-item">
-                <img src="/icons/create-outline.svg">
-                Karte verbessern
-              </summary>
-              <ul class="dropdown-menu">
-                <li>
-                  <a
-                    href="https://www.openstreetmap.org/note/new"
-                    target="_blank"
-                  >
-                    Fehler melden<span>↗</span></a
-                  >
-                </li>
-                <li>
-                  <a href="https://www.openstreetmap.org/edit" target="_blank"
-                    >Karte editieren<span>↗</span></a
-                  >
-                </li>
-              </ul>
-            </details>
+          <li class="dropdown">
+            <input
+              type="checkbox"
+              id="dropdown-improve"
+              class="dropdown-toggle-checkbox"
+              hidden
+            >
+            <label for="dropdown-improve" class="dropdown-toggle menu-item">
+              <img src="/icons/create-outline.svg">
+              Karte verbessern
+            </label>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://www.openstreetmap.org/note/new" target="_blank"
+                  >Fehler melden<span>↗</span></a
+                >
+              </li>
+              <li>
+                <a href="https://www.openstreetmap.org/edit" target="_blank"
+                  >Karte editieren<span>↗</span></a
+                >
+              </li>
+            </ul>
           </li>
           <li>
             <a
