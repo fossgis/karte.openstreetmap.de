@@ -3,7 +3,12 @@
 :root {
   --grey: #f8f8f8;
   --border-color: #ccc;
-  --link-color: black;
+  --link-color: #222;
+  --desc-color: #666;
+  --menu-radius: 3px;
+  --menu-padding: 0.5rem 1rem;
+  --menu-font-size: 0.95em;
+  --menu-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 #map {
@@ -53,7 +58,7 @@ a {
 .menu-item {
   display: inline-block;
   margin-left: 0.5rem;
-  border-radius: 3px;
+  border-radius: var(--menu-radius);
   cursor: pointer;
   background: none;
   border: none;
@@ -79,21 +84,30 @@ a {
   position: absolute;
   background: #fff;
   border: 1px solid var(--border-color);
+  border-radius: var(--menu-radius);
   list-style: none;
   margin: 0;
   padding: 0.25rem 0;
   z-index: 10;
   min-width: 180px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--menu-shadow);
 }
 
 .dropdown-toggle-checkbox:checked ~ .dropdown-toggle ~ .dropdown-menu {
   display: block;
 }
 
+.dropdown-menu-desc {
+  padding: var(--menu-padding);
+  color: var(--desc-color);
+  font-size: var(--menu-font-size);
+  cursor: default;
+  background: none;
+}
+
 .dropdown-menu a {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: var(--menu-padding);
   white-space: nowrap;
 }
 
@@ -118,7 +132,7 @@ a {
     display: block;
     font-size: 1.5rem;
     cursor: pointer;
-    padding: 0.5rem;
+    padding: var(--menu-padding);
     margin-left: auto;
   }
 
@@ -152,5 +166,6 @@ a {
     border: none;
     box-shadow: none;
     min-width: 0;
+    border-radius: 0;
   }
 }
