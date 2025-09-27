@@ -123,6 +123,18 @@ a {
   display: none;
 }
 
+.routing-buttons {
+  display: flex;
+  gap: 0.5em;
+}
+
+.routing-buttons img {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 @media (max-width: 768px) {
   .header {
     padding-bottom: 0;
