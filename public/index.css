@@ -97,7 +97,7 @@ a {
   display: block;
 }
 
-.dropdown-menu-desc {
+.dropdown-menu-description {
   padding: var(--menu-padding);
   color: var(--desc-color);
   font-size: var(--menu-font-size);
