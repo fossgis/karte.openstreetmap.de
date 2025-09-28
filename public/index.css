@@ -1,10 +1,11 @@
 @import "./lib/external/maplibre-gl/maplibre-gl.css";
 
 :root {
-  --grey: #f8f8f8;
-  --border-color: #ccc;
-  --link-color: #222;
-  --desc-color: #666;
+  --color-bg: #fff;
+  --color-grey: #f8f8f8;
+  --color-border: #ccc;
+  --color-link: #222;
+  --color-desc: #666;
   --menu-radius: 3px;
   --menu-padding: 0.5rem 1rem;
   --menu-font-size: 0.95em;
@@ -28,13 +29,13 @@ main {
 
 a {
   text-decoration: none;
-  color: var(--link-color);
+  color: var(--color-link);
 }
 
 .header {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--color-border);
   position: relative;
   padding: 5px;
 }
@@ -66,7 +67,7 @@ a {
 }
 
 .menu-item:hover {
-  background-color: var(--grey);
+  background-color: var(--color-grey);
 }
 
 .menu-item img {
@@ -82,8 +83,8 @@ a {
 .dropdown-menu {
   display: none;
   position: absolute;
-  background: #fff;
-  border: 1px solid var(--border-color);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
   border-radius: var(--menu-radius);
   list-style: none;
   margin: 0;
@@ -99,7 +100,7 @@ a {
 
 .dropdown-menu-description {
   padding: var(--menu-padding);
-  color: var(--desc-color);
+  color: var(--color-desc);
   font-size: var(--menu-font-size);
   cursor: default;
   background: none;
@@ -112,7 +113,7 @@ a {
 }
 
 .dropdown-menu a:hover {
-  background-color: var(--grey);
+  background-color: var(--color-grey);
 }
 
 .menu-toggle {
@@ -159,7 +160,7 @@ a {
     top: 100%;
     left: 0;
     right: 0;
-    background: #fff;
+    background: var(--color-bg);
     padding-left: 1rem;
     z-index: 3;
   }
