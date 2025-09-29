@@ -42,18 +42,18 @@ map.addControl(new maplibregl.ScaleControl());
 map.addControl(new maplibregl.GeolocateControl());
 
 // set Url for adding OSM Note
-const setUrl = ()=>{
+const setUrl = () => {
   const center = map.getCenter();
-  console.log(center)
-  const longitude = center.lng
-  const latitude = center.lat
+  console.log(center);
+  const longitude = center.lng;
+  const latitude = center.lat;
   const zoom = map.getZoom();
-  const link = document.getElementById('leave-note');
-  link.href = `https://www.openstreetmap.org/note/new#map=${zoom}/${latitude}/${longitude}`
-}
+  const link = document.getElementById("leave-note");
+  link.href = `https://www.openstreetmap.org/note/new#map=${zoom}/${latitude}/${longitude}`;
+};
 
 // set url initially, before map has moved
-setUrl()
+setUrl();
 
 // update link when map moves
-map.on('moveend', setUrl);
+map.on("moveend", setUrl);
