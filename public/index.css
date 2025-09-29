@@ -8,8 +8,6 @@
   --color-desc: #666;
   --menu-radius: 3px;
   --menu-padding: 0.5rem 1rem;
-  --menu-font-size: 0.95em;
-  --menu-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 #map {
@@ -89,9 +87,8 @@ a {
   list-style: none;
   margin: 0;
   padding: 0.25rem 0;
-  z-index: 10;
+  z-index: 3;
   min-width: 180px;
-  box-shadow: var(--menu-shadow);
 }
 
 .dropdown-toggle-checkbox:checked ~ .dropdown-toggle ~ .dropdown-menu {
@@ -101,7 +98,7 @@ a {
 .dropdown-menu-description {
   padding: var(--menu-padding);
   color: var(--color-desc);
-  font-size: var(--menu-font-size);
+  font-size: 0.95em;
   cursor: default;
   background: none;
 }
