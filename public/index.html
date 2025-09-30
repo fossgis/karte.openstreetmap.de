@@ -11,12 +11,13 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta
       name="description"
-      content="OpenStreetMap ist eine frei editierbare Weltkarte, erstellt von einer globalen Community – offen, kostenlos, für alle."
+      content="OpenStreetMap ist eine frei editierbare Weltkarte, erstellt von einer globalen Community - offen, kostenlos, für alle."
     >
 
     <link rel="stylesheet" href="index.css">
     <script type="module" src="index.js" defer></script>
   </head>
+
   <body>
     <noscript>
       <p lang="en">
@@ -31,6 +32,133 @@
         >
       </p>
     </noscript>
-    <div id="map"></div>
+
+    <header class="header">
+      <a href="/">
+        <img src="/img/osmde.svg" alt="OpenStreetMap Deutschland" class="logo">
+      </a>
+
+      <!-- Hidden checkbox for mobile menu toggle  -->
+      <input
+        type="checkbox"
+        id="menu-toggle"
+        class="menu-toggle"
+        aria-label="Menu"
+      >
+
+      <!-- Hamburger button (visible only on mobile) -->
+      <label for="menu-toggle" class="hamburger-menu" aria-expanded="false">
+        ☰
+      </label>
+
+      <!-- Main navigation menu -->
+      <nav class="nav">
+        <ul class="nav-list">
+          <li class="dropdown">
+            <input
+              type="checkbox"
+              id="dropdown-routing"
+              class="dropdown-toggle-checkbox"
+              hidden
+            >
+            <label for="dropdown-routing" class="dropdown-toggle menu-item">
+              Routenplanung
+              <span>▾</span>
+            </label>
+            <ul class="dropdown-menu">
+              <li>
+                <div class="routing-buttons">
+                  <a
+                    href="https://openrouteservice.org/directions"
+                    target="_blank"
+                  >
+                    <img src="/icons/walk-outline.svg" alt="Zu Fuß">
+                  </a>
+                  <a href="https://brouter.de/brouter-web" target="_blank">
+                    <img src="/icons/bicycle-outline.svg" alt="Fahrrad">
+                  </a>
+                  <a href="https://routing.openstreetmap.de/" target="_blank">
+                    <img src="/icons/car-outline.svg" alt="Auto">
+                  </a>
+                </div>
+              </li>
+              <li class="dropdown-menu-description">
+                Es gibt mehrere auf OpenStreetMap basierende Routingdienste die
+                hier aufgeführt sind.
+              </li>
+              <li>
+                <a href="https://graphhopper.com/maps" target="_blank"
+                  >GraphHopper<span>↗</span></a
+                >
+              </li>
+              <li>
+                <a href="https://brouter.de/brouter-web" target="_blank"
+                  >BRouter<span>↗</span></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://openrouteservice.org/directions"
+                  target="_blank"
+                  >Openrouteservice<span>↗</span></a
+                >
+              </li>
+              <li>
+                <a href="https://routing.openstreetmap.de/" target="_blank"
+                  >OSRM<span>↗</span></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://valhalla.openstreetmap.de/directions"
+                  target="_blank"
+                  >Valhalla<span>↗</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <input
+              type="checkbox"
+              id="dropdown-improve"
+              class="dropdown-toggle-checkbox"
+              hidden
+            >
+            <label for="dropdown-improve" class="dropdown-toggle menu-item">
+              Karte verbessern
+              <span>▾</span>
+            </label>
+            <ul class="dropdown-menu">
+              <li class="dropdown-menu-description">
+                Du kannst Fehler melden oder die Karte direkt verbessern
+              </li>
+              <li>
+                <a href="https://www.openstreetmap.org/note/new" target="_blank"
+                  >Fehler melden<span>↗</span></a
+                >
+              </li>
+              <li>
+                <a href="https://www.openstreetmap.org/edit" target="_blank"
+                  >Karte editieren<span>↗</span></a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              class="menu-item"
+              href="https://www.openstreetmap.de/"
+              target="_blank"
+            >
+              Über OpenStreetMap
+              <span>↗</span></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Map container -->
+    <main id="map"></main>
   </body>
 </html>

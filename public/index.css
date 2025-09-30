@@ -1,12 +1,181 @@
 @import "./lib/external/maplibre-gl/maplibre-gl.css";
 
-body {
-  margin: 0;
-  padding: 0;
+:root {
+  --color-bg: #fff;
+  --color-grey: #f8f8f8;
+  --color-border: #ccc;
+  --color-link: #222;
+  --color-desc: #666;
+  --menu-radius: 3px;
+  --menu-padding: 0.5rem 1rem;
 }
 
-html,
-body,
 #map {
   height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-link);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  padding: 5px;
+}
+
+.logo {
+  height: 40px;
+}
+
+.nav {
+  margin-left: auto;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.5rem;
+}
+
+.menu-item {
+  display: inline-block;
+  margin-left: 0.5rem;
+  border-radius: var(--menu-radius);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font: inherit;
+}
+
+.menu-item:hover {
+  background-color: var(--color-grey);
+}
+
+.menu-item img {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--menu-radius);
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 0;
+  z-index: 3;
+  min-width: 180px;
+}
+
+.dropdown-toggle-checkbox:checked ~ .dropdown-toggle ~ .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu-description {
+  padding: var(--menu-padding);
+  color: var(--color-desc);
+  font-size: 0.95em;
+  cursor: default;
+  background: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: var(--menu-padding);
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+  background-color: var(--color-grey);
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.hamburger-menu {
+  display: none;
+}
+
+.routing-buttons {
+  display: flex;
+  gap: 0.5em;
+}
+
+.routing-buttons img {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding-bottom: 0;
+  }
+
+  .hamburger-menu {
+    display: block;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: var(--menu-padding);
+    margin-left: auto;
+  }
+
+  .nav {
+    margin-left: 0;
+  }
+
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-bg);
+    padding-left: 1rem;
+    z-index: 3;
+  }
+
+  .menu-toggle:checked ~ .nav .nav-list {
+    display: flex;
+  }
+
+  .nav-list .menu-item {
+    margin: 0;
+    padding: 0.75rem 0;
+  }
+
+  .dropdown-menu {
+    position: static;
+    border: none;
+    box-shadow: none;
+    min-width: 0;
+    border-radius: 0;
+  }
 }
