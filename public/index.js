@@ -37,12 +37,7 @@ const map = new maplibregl.Map({
   attributionControl: true,
 });
 
-if (
-  window.matchMedia("(any-hover: hover)").matches &&
-  !window.matchMedia("(pointer: coarse)").matches
-) {
-  map.addControl(new maplibregl.NavigationControl({ showCompass: false }));
-}
+map.addControl(new maplibregl.NavigationControl({ showCompass: false }));
 
 map.addControl(new maplibregl.ScaleControl());
 
