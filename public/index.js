@@ -37,6 +37,8 @@ const map = new maplibregl.Map({
   attributionControl: true,
 });
 
+map.addControl(new maplibregl.NavigationControl({ showCompass: false }));
+
 map.addControl(new maplibregl.ScaleControl());
 
 map.addControl(new maplibregl.GeolocateControl());
