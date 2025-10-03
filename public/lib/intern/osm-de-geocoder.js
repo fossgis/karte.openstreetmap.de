@@ -3,7 +3,7 @@ export function createGeocoderControl() {
     forwardGeocode: async (config) => {
       const features = [];
       try {
-        const request = `https://nominatim.openstreetmap.org/search?q=${config.query}&format=geojson`;
+        const request = `https://nominatim.openstreetmap.org/search?q=${config.query}&format=geojson&accept-language=de`;
         const response = await fetch(request);
         const geojson = await response.json();
         for (const feature of geojson.features) {
