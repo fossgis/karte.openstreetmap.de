@@ -46,6 +46,4 @@ map.addControl(new maplibregl.ScaleControl());
 
 map.addControl(new maplibregl.GeolocateControl());
 
-document
-  .getElementById("geocoder-container")
-  .appendChild(createGeocoderControl().onAdd(map));
+createGeocoderControl().addTo("#geocoder-container");
