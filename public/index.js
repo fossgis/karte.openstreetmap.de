@@ -33,6 +33,8 @@ const map = new maplibregl.Map({
   container: "map",
   bounds: boundsGermany,
   style: style,
+  maxZoom: 20,
+  minZoom: 0,
   hash: "map",
   maplibreLogo: false,
   dragRotate: false,
