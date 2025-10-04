@@ -1,4 +1,7 @@
 import "./lib/external/maplibre-gl/maplibre-gl.js";
+import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.min.js";
+
+import { createGeocoderControl } from "./lib/intern/osm-de-geocoder.js";
 
 const style = {
   version: 8,
@@ -30,6 +33,8 @@ const map = new maplibregl.Map({
   container: "map",
   bounds: boundsGermany,
   style: style,
+  maxZoom: 20,
+  minZoom: 0,
   hash: "map",
   maplibreLogo: false,
   dragRotate: false,
@@ -49,3 +54,5 @@ map.addControl(new maplibregl.NavigationControl({ showCompass: false }));
 map.addControl(new maplibregl.ScaleControl());
 
 map.addControl(new maplibregl.GeolocateControl());
+
+createGeocoderControl().addTo("#geocoder-container");
