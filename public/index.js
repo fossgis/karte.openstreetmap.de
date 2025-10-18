@@ -40,6 +40,13 @@ const map = new maplibregl.Map({
   dragRotate: false,
   touchZoomRotate: false,
   attributionControl: true,
+  locale: {
+    "AttributionControl.ToggleAttribution": "Urheberrecht ein-/ausblenden",
+    "GeolocateControl.FindMyLocation": "Meinen Standort finden",
+    "GeolocateControl.LocationNotAvailable": "Standort nicht verfügbar",
+    "NavigationControl.ZoomIn": "Hineinzoomen",
+    "NavigationControl.ZoomOut": "Herauszoomen",
+  },
 });
 
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }));
