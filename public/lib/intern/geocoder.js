@@ -5,7 +5,7 @@ export function createGeocoderControl(map) {
       const params = new URLSearchParams({
         q: config.query,
         format: "geojson",
-        "accept-language": "de",
+        "accept-language": config.language,
       });
       try {
         const request = `https://nominatim.openstreetmap.org/search?${params.toString()}`;
@@ -38,7 +38,11 @@ export function createGeocoderControl(map) {
     },
   };
 
-  const geocoder = new MaplibreGeocoder(geocoderApi, { maplibregl });
+  const geocoder = new MaplibreGeocoder(geocoderApi, {
+    maplibregl,
+    language: "de",
+    showResultMarkers: false,
+  });
 
   geocoder._map = map;
 
