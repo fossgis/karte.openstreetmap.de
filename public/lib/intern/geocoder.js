@@ -42,6 +42,7 @@ export function createGeocoderControl(map) {
     maplibregl,
     language: "de",
     showResultMarkers: false,
+    showResultsWhileTyping: true,
   });
 
   geocoder._map = map;
