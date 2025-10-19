@@ -1,4 +1,4 @@
-export function createGeocoderControl() {
+export function createGeocoderControl(map) {
   const geocoderApi = {
     forwardGeocode: async (config) => {
       const features = [];
@@ -33,5 +33,9 @@ export function createGeocoderControl() {
     },
   };
 
-  return new MaplibreGeocoder(geocoderApi, { maplibregl });
+  const geocoder = new MaplibreGeocoder(geocoderApi, { maplibregl });
+
+  geocoder._map = map;
+
+  return geocoder;
 }

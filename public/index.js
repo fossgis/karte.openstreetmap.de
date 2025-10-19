@@ -55,4 +55,4 @@ map.addControl(new maplibregl.ScaleControl());
 
 map.addControl(new maplibregl.GeolocateControl());
 
-createGeocoderControl().addTo("#geocoder-container");
+createGeocoderControl(map).addTo("#geocoder-container");
