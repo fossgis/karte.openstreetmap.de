@@ -2,8 +2,13 @@ export function createGeocoderControl(map) {
   const geocoderApi = {
     forwardGeocode: async (config) => {
       const features = [];
+      const params = new URLSearchParams({
+        q: config.query,
+        format: "geojson",
+        "accept-language": "de",
+      });
       try {
-        const request = `https://nominatim.openstreetmap.org/search?q=${config.query}&format=geojson&accept-language=de`;
+        const request = `https://nominatim.openstreetmap.org/search?${params.toString()}`;
         const response = await fetch(request);
         const geojson = await response.json();
         for (const feature of geojson.features) {
