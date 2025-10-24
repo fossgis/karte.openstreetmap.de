@@ -7,7 +7,7 @@ const style = {
       type: "raster",
       tiles: ["https://tile.openstreetmap.de/{z}/{x}/{y}.png"],
       tileSize: 256,
-      attribution: "Kartendaten von OpenStreetMap",
+      attribution: "Kartendaten © OpenStreetMap Mitwirkende",
     },
   },
   layers: [
@@ -36,7 +36,7 @@ const map = new maplibregl.Map({
   touchZoomRotate: false,
   attributionControl: true,
   locale: {
-    "AttributionControl.ToggleAttribution": "Urheberrecht ein-/ausblenden",
+    "AttributionControl.ToggleAttribution": "Quellenangabe ein-/ausblenden",
     "GeolocateControl.FindMyLocation": "Meinen Standort finden",
     "GeolocateControl.LocationNotAvailable": "Standort nicht verfügbar",
     "NavigationControl.ZoomIn": "Hineinzoomen",
