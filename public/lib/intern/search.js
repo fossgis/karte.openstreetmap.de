@@ -1,5 +1,6 @@
 const defaultLanguage = "de";
-const countDispayedResults = 7;
+const countDisplayedResults = 7;
+const photonBaseUrl = "https://photon.komoot.io/api/";
 
 /**
  * Convert Photon response to text string
@@ -36,77 +37,83 @@ const displayTextFromPhoton = (properties) => {
 };
 
 /**
- * Util to request Photon API
+ * Helper function to request Photon API
  */
 const requestPhoton = async (searchParams) => {
-  const { q, lang, limit, lat, lon } = searchParams;
-  const url = new URL("https://photon.komoot.io/api/");
 
-  const params = url.searchParams
+  const { q, lang, limit, lat, lon } = searchParams;
+  const url = new URL(photonBaseUrl);
+
+  const params = url.searchParams;  
 
   params.append("q", q);
   params.append("lang", lang);
   params.append("limit", limit);
 
-  validLatLon = !!lat && !!lon
+  const validLatLon = !!lat && !!lon;
   if (validLatLon) {
     params.append("lat", lat);
     params.append("lon", lon);
-  }
+  }  
 
   return fetch(url).then((response) => response.json());
 };
 
+/**
+ * Convert Photon response to required format
+ */
+const processPhotonResponse = (geojson) => {
+  // convert Photon features to Carmen features
+  const resultFeatures = geojson.features.map((photonFeature) => {
+    const center = photonFeature.geometry.coordinates;
+
+    const properties = photonFeature.properties;
+    const displayText = displayTextFromPhoton(properties);
+    const extent = properties.extent;
+
+    return {
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: center,
+      },
+      properties: properties, // TODO: needed ?
+
+      // TODO: check what text is really needed
+      place_name: displayText,
+      text: displayText,
+
+      place_type: ["place"],
+      bbox: extent,
+    };
+  });
+
+  return {
+    type: "FeatureCollection",
+    features: resultFeatures,
+  };
+};
+
+/**
+ * Callback when user interacts with search input
+ */
 const forwardGeocode = (config) => {
   const { query, proximity } = config;
 
-  const [longitude, latitude] = proximity || []
+  const [longitude, latitude] = proximity || [];
 
   const photonParams = {
     q: query,
     lang: defaultLanguage,
-    limit: countDispayedResults,
+    limit: countDisplayedResults,
     lon: longitude,
     lat: latitude,
   };
-
-  return requestPhoton(photonParams).then((geojson) => {
-    const features = geojson.features;
-
-    const resultFeatures = features.map((feature) => {
-      const center = feature.geometry.coordinates;
-
-      const properties = feature.properties;
-      const displayText = displayTextFromPhoton(properties);
-      const extent = properties.extent;
-
-      const resultFeature = {
-        type: "Feature",
-        geometry: {
-          type: "Point",
-          coordinates: center,
-        },
-        properties: properties,
-
-        // TODO: check what text is really needed
-        place_name: displayText,
-        text: displayText,
-
-        place_type: ["place"],
-        bbox: extent,
-      };
-
-      return resultFeature;
-    });
-
-    return {
-      type: "FeatureCollection",
-      features: resultFeatures,
-    };
-  });
+  
+  return requestPhoton(photonParams).then(processPhotonResponse);
 };
 
-export function geocoder(mapInstance) {
+export function createSearchControl(mapInstance) {
   const geocoderApi = {
     forwardGeocode: forwardGeocode,
   };

@@ -1,6 +1,6 @@
 import "./lib/external/maplibre-gl/maplibre-gl.js";
 import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.min.js";
-import { geocoder } from "./lib/intern/search.js";
+import { createSearchControl } from "./lib/intern/search.js";
 
 const style = {
   version: 8,
@@ -45,7 +45,7 @@ const map = new maplibregl.Map({
   },
 });
 
-map.addControl(geocoder(maplibregl));
+map.addControl(createSearchControl(maplibregl));
 
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }));
 
