@@ -1,4 +1,6 @@
 import "./lib/external/maplibre-gl/maplibre-gl.js";
+import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.min.js";
+import { geocoder } from "./lib/intern/search.js";
 
 const style = {
   version: 8,
@@ -15,8 +17,6 @@ const style = {
       id: "osm-german-style-layer",
       type: "raster",
       source: "osm-german-style",
-      minzoom: 0,
-      maxzoom: 22,
     },
   ],
 };
@@ -35,6 +35,7 @@ const map = new maplibregl.Map({
   dragRotate: false,
   touchZoomRotate: false,
   attributionControl: true,
+  maxZoom: 19,
   locale: {
     "AttributionControl.ToggleAttribution": "Quellenangabe ein-/ausblenden",
     "GeolocateControl.FindMyLocation": "Meinen Standort finden",
@@ -43,6 +44,8 @@ const map = new maplibregl.Map({
     "NavigationControl.ZoomOut": "Herauszoomen",
   },
 });
+
+map.addControl(geocoder(maplibregl));
 
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }));
 
