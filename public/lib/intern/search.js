@@ -1,7 +1,9 @@
 const defaultLanguage = "de";
 const countDispayedResults = 7;
 
-// TODO: docs
+/**
+ * Convert Photon response to text string
+ */
 const displayTextFromPhoton = (properties) => {
   const {
     name,
@@ -33,67 +35,80 @@ const displayTextFromPhoton = (properties) => {
   return addressParts.filter(Boolean).join(", ");
 };
 
+/**
+ * Util to request Photon API
+ */
+const requestPhoton = async (searchParams) => {
+  const { q, lang, limit, lat, lon } = searchParams;
+  const url = new URL("https://photon.komoot.io/api/");
+
+  const params = url.searchParams
+
+  params.append("q", q);
+  params.append("lang", lang);
+  params.append("limit", limit);
+
+  if (!!lat && !!lon) {
+    params.append("lat", lat);
+    params.append("lon", lon);
+  }
+
+  return fetch(url).then((response) => response.json());
+};
+
 const forwardGeocode = (config) => {
   const { query, proximity } = config;
 
-  const params = new URLSearchParams();
-  params.append("q", query);
-  params.append("lang", defaultLanguage);
-  params.append("limit", countDispayedResults);
+  const [longitude, latitude] = proximity || []
 
-  // TODO: maybe include zoom for Photon Result
+  const photonParams = {
+    q: query,
+    lang: defaultLanguage,
+    limit: countDispayedResults,
+    lon: longitude,
+    lat: latitude,
+  };
 
-  if (proximity) {
-    const [longitude, latitude] = proximity;
-    params.append("lat", latitude);
-    params.append("lon", longitude);
-  }
+  return requestPhoton(photonParams).then((geojson) => {
+    const features = geojson.features;
 
-  const url = `https://photon.komoot.io/api/?${params}`; // TODO: extract to config
-  return fetch(url)
-    .then((response) => response.json())
-    .then((geojson) => {
-      const features = geojson.features;
+    const resultFeatures = features.map((feature) => {
+      const center = feature.geometry.coordinates;
 
-      const resultFeatures = features.map((feature) => {
-        const center = feature.geometry.coordinates;
+      const properties = feature.properties;
+      const displayText = displayTextFromPhoton(properties);
+      const extent = properties.extent;
 
-        const properties = feature.properties;
-        const displayText = displayTextFromPhoton(properties);
-        const extent = properties.extent;
+      const resultFeature = {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: center,
+        },
+        properties: properties,
 
-        const resultFeature = {
-          type: "Feature",
-          geometry: {
-            type: "Point",
-            coordinates: center,
-          },
-          properties: properties,
+        // TODO: check what text is really needed
+        place_name: displayText,
+        text: displayText,
 
-          // TODO: check what text is really needed
-          place_name: displayText,
-          text: displayText,
-
-          place_type: ["place"],
-          bbox: extent,
-        };
-
-        return resultFeature;
-      });
-
-      return {
-        type: "FeatureCollection",
-        features: resultFeatures,
+        place_type: ["place"],
+        bbox: extent,
       };
+
+      return resultFeature;
     });
+
+    return {
+      type: "FeatureCollection",
+      features: resultFeatures,
+    };
+  });
 };
 
 export function geocoder(mapInstance) {
   const geocoderApi = {
     forwardGeocode: forwardGeocode,
   };
-
-  // TODO: maybe collapse search bar or move to header
 
   const options = {
     maplibregl: mapInstance,
