@@ -15,8 +15,6 @@ const style = {
       id: "osm-german-style-layer",
       type: "raster",
       source: "osm-german-style",
-      minzoom: 0,
-      maxzoom: 22,
     },
   ],
 };
@@ -35,6 +33,7 @@ const map = new maplibregl.Map({
   dragRotate: false,
   touchZoomRotate: false,
   attributionControl: true,
+  maxZoom: 19,
   locale: {
     "AttributionControl.ToggleAttribution": "Quellenangabe ein-/ausblenden",
     "GeolocateControl.FindMyLocation": "Meinen Standort finden",
