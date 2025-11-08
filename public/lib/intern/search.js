@@ -48,7 +48,8 @@ const requestPhoton = async (searchParams) => {
   params.append("lang", lang);
   params.append("limit", limit);
 
-  if (!!lat && !!lon) {
+  validLatLon = !!lat && !!lon
+  if (validLatLon) {
     params.append("lat", lat);
     params.append("lon", lon);
   }
