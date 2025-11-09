@@ -40,7 +40,6 @@ const displayTextFromPhoton = (properties) => {
  * Helper function to request Photon API
  */
 const requestPhoton = async (searchParams) => {
-
   const { q, lang, limit, lat, lon } = searchParams;
   const url = new URL(photonBaseUrl);
 
@@ -77,11 +76,9 @@ const processPhotonResponse = (geojson) => {
         type: "Point",
         coordinates: center,
       },
-      properties: properties, // TODO: needed ?
 
-      // TODO: check what text is really needed
-      place_name: displayText,
-      text: displayText,
+      place_name: displayText, // text shown in search results
+      text:  displayText, // text shown in searchbar after selection
 
       place_type: ["place"],
       bbox: extent,
@@ -98,14 +95,14 @@ const processPhotonResponse = (geojson) => {
  * Callback when user interacts with search input
  */
 const forwardGeocode = (config) => {
-  const { query, proximity } = config;
+  const { query, proximity, limit } = config;
 
   const [longitude, latitude] = proximity || [];
 
   const photonParams = {
     q: query,
     lang: defaultLanguage,
-    limit: countDisplayedResults,
+    limit: limit,
     lon: longitude,
     lat: latitude,
   };
@@ -120,6 +117,7 @@ export function createSearchControl(mapInstance) {
 
   const options = {
     maplibregl: mapInstance,
+    limit: countDisplayedResults,
 
     // needed for autocomplete
     showResultsWhileTyping: true,
