@@ -43,7 +43,7 @@ const requestPhoton = async (searchParams) => {
   const { q, lang, limit, lat, lon } = searchParams;
   const url = new URL(photonBaseUrl);
 
-  const params = url.searchParams;  
+  const params = url.searchParams;
 
   params.append("q", q);
   params.append("lang", lang);
@@ -53,32 +53,43 @@ const requestPhoton = async (searchParams) => {
   if (validLatLon) {
     params.append("lat", lat);
     params.append("lon", lon);
-  }  
+  }
 
-  return fetch(url).then((response) => response.json());
+  return fetch(url).then((response) => {
+    if (!response.ok) {
+      throw new Error(
+        `Photon request failed with status ${response.status}: ${response.statusText}`,
+      );
+    }
+    return response.json();
+  });
 };
 
 /**
  * Convert Photon response to required format
  */
 const processPhotonResponse = (geojson) => {
-  // convert Photon features to Carmen features
-  const resultFeatures = geojson.features.map((photonFeature) => {
-    const center = photonFeature.geometry.coordinates;
+  const { type, features } = geojson;
 
-    const properties = photonFeature.properties;
+  // sanity check of received GeoJSON
+  const responseValid = type === "FeatureCollection" && Array.isArray(features);
+  if (responseValid === false) {
+    throw new Error("Response from Photon is invalid:", geojson);
+  }
+
+  // convert Photon features to Carmen features
+  const resultFeatures = features.map((photonFeature) => {
+    const { geometry, properties } = photonFeature;
+    const { extent, name } = properties;
+
     const displayText = displayTextFromPhoton(properties);
-    const extent = properties.extent;
 
     return {
       type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: center,
-      },
+      geometry: geometry,
 
       place_name: displayText, // text shown in search results
-      text:  displayText, // text shown in searchbar after selection
+      text: name, // text shown in searchbar after selection
 
       place_type: ["place"],
       bbox: extent,
@@ -106,7 +117,7 @@ const forwardGeocode = (config) => {
     lon: longitude,
     lat: latitude,
   };
-  
+
   return requestPhoton(photonParams).then(processPhotonResponse);
 };
 
@@ -118,6 +129,7 @@ export function createSearchControl(mapInstance) {
   const options = {
     maplibregl: mapInstance,
     limit: countDisplayedResults,
+    language: defaultLanguage,
 
     // needed for autocomplete
     showResultsWhileTyping: true,
