@@ -66,7 +66,7 @@ const requestPhoton = async (searchParams) => {
 };
 
 /**
- * Convert Photon response to required format
+ * Request Photon API for forward geocoding
  */
 const processPhotonResponse = (geojson) => {
   const { type, features } = geojson;
@@ -106,13 +106,12 @@ const processPhotonResponse = (geojson) => {
  * Callback when user interacts with search input
  */
 const forwardGeocode = (config) => {
-  const { query, proximity, limit } = config;
-
+  const { query, proximity, limit, language } = config;
   const [longitude, latitude] = proximity || [];
 
   const photonParams = {
     q: query,
-    lang: defaultLanguage,
+    lang: language,
     limit: limit,
     lon: longitude,
     lat: latitude,
