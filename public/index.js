@@ -1,6 +1,6 @@
 import "./lib/external/maplibre-gl/maplibre-gl.js";
 import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.min.js";
-import { createSearchControl } from "./lib/intern/search.js";
+import { createSearchControl } from "./lib/internal/search.js";
 
 const style = {
   version: 8,
