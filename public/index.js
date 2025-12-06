@@ -1,4 +1,6 @@
 import "./lib/external/maplibre-gl/maplibre-gl.js";
+import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.min.js";
+import { createSearchControl } from "./lib/internal/search.js";
 
 const style = {
   version: 8,
@@ -42,6 +44,8 @@ const map = new maplibregl.Map({
     "NavigationControl.ZoomOut": "Herauszoomen",
   },
 });
+
+map.addControl(createSearchControl(maplibregl));
 
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }));
 
