@@ -4,13 +4,19 @@
 export class BasemapSwitcher {
   constructor(basemapConfig) {
     this._basemapConfig = basemapConfig;
-    this._initialLayerId = Object.keys(this._basemapConfig)[0];
-    this._visibleId = this._initialLayerId;
+    this._LAYER_PARAM_NAME = "layer";
   }
 
   onAdd(map) {
     this._map = map;
 
+    // initial basemap settings
+    const existingLayerIds = Object.keys(this._basemapConfig);
+    const firstLayerIdInConfig = existingLayerIds[0];
+    this._initialLayerId = this._getValidLayerIdFromUrl() || firstLayerIdInConfig;
+    this._visibleId = this._initialLayerId;
+
+    // setup html elements
     this._container = this._createTopLevelContainer();
     const basemapOptionsContainer = this._createBasemapOptionsContainer();
     const controlButton = this._createControlButton(basemapOptionsContainer);
@@ -144,12 +150,54 @@ export class BasemapSwitcher {
     this._setLayerVisibility(selectedLayerId, true);
     this._setLayerVisibility(this._visibleId, false);
 
+    this._setLayerIdInUrl(selectedLayerId);
+
     this._visibleId = selectedLayerId;
   };
 
   _setLayerVisibility(layerId, visible) {
     const value = visible ? "visible" : "none";
     this._map.setLayoutProperty(layerId, "visibility", value);
+  }
+
+  /**
+   * Returns layer id provided in URL if it is present in the basemap config
+   */
+  _getValidLayerIdFromUrl() {
+    const { hash } = window.location;
+
+    // remove '#' at first character
+    const queryString = hash.substring(1);
+
+    const params = new URLSearchParams(queryString);
+
+    const foundLayerId = params.get(this._LAYER_PARAM_NAME);
+
+    // check if found layer id is present in basemap config
+    const existingLayerIds = Object.keys(this._basemapConfig);
+
+    if (existingLayerIds.includes(foundLayerId)) {
+      return foundLayerId;
+    }
+  }
+
+  /**
+   * Updates layer id in URL
+   */
+  _setLayerIdInUrl(layerId) {
+    const { hash } = window.location;
+
+    // remove '#' at first character
+    const queryString = hash.substring(1);
+
+    const params = new URLSearchParams(queryString);
+    params.set(this._LAYER_PARAM_NAME, layerId);
+
+    let updatedHash = `#${params.toString()}`;
+    // make encoded slashes "/" human readable again
+    updatedHash = updatedHash.replaceAll("%2F", "/");
+
+    window.location.hash = updatedHash;
   }
 
   onRemove() {
