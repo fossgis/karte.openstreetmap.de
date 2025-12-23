@@ -1,24 +1,28 @@
 import "./lib/external/maplibre-gl/maplibre-gl.js";
 import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.min.js";
+
+import { BasemapSwitcher } from "./lib/internal/BasemapSwitcher.js";
 import { createSearchControl } from "./lib/internal/search.js";
 
-const style = {
-  version: 8,
-  sources: {
-    "osm-german-style": {
-      type: "raster",
-      tiles: ["https://tile.openstreetmap.de/{z}/{x}/{y}.png"],
-      tileSize: 256,
-      attribution: "Kartendaten © OpenStreetMap Mitwirkende",
-    },
+const basemapConfig = {
+  de: {
+    displayName: "deutscher Stil",
+    tiles: ["https://tile.openstreetmap.de/{z}/{x}/{y}.png"],
+    attribution: "Kartendaten © OpenStreetMap Mitwirkende",
+    thumbnail: "osmde.png",
   },
-  layers: [
-    {
-      id: "osm-german-style-layer",
-      type: "raster",
-      source: "osm-german-style",
-    },
-  ],
+  standard: {
+    displayName: "Standard",
+    tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+    attribution: "Kartendaten © OpenStreetMap Mitwirkende",
+    thumbnail: "osmorg.png",
+  },
+  cyclosm: {
+    displayName: "CyclOSM",
+    tiles: ["https://c.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"],
+    attribution: `Kartendaten © OpenStreetMap Mitwirkende. Stil von <a href="https://www.cyclosm.org" target="_blank">CyclOSM</a> gehostet von <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>`,
+    thumbnail: "cycle.png",
+  },
 };
 
 const boundsGermany = [
@@ -29,7 +33,6 @@ const boundsGermany = [
 const map = new maplibregl.Map({
   container: "map",
   bounds: boundsGermany,
-  style: style,
   hash: "map",
   maplibreLogo: false,
   dragRotate: false,
@@ -45,10 +48,24 @@ const map = new maplibregl.Map({
   },
 });
 
+// set basemaps
+Object.entries(basemapConfig).forEach(([id, config]) => {
+  const { tiles, attribution } = config;
+  map.addSource(id, {
+    type: "raster",
+    tileSize: 256,
+    attribution,
+    tiles,
+  });
+  map.addLayer({ id, source: id, type: "raster" });
+});
 map.addControl(createSearchControl(maplibregl));
 
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }));
 
-map.addControl(new maplibregl.ScaleControl());
+map.addControl(new maplibregl.ScaleControl(), "bottom-right");
 
 map.addControl(new maplibregl.GeolocateControl());
+
+const basemapSwitcher = new BasemapSwitcher(basemapConfig);
+map.addControl(basemapSwitcher);
