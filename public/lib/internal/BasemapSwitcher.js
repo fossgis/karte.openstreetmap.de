@@ -13,7 +13,8 @@ export class BasemapSwitcher {
     // initial basemap settings
     const existingLayerIds = Object.keys(this._basemapConfig);
     const firstLayerIdInConfig = existingLayerIds[0];
-    this._initialLayerId = this._getValidLayerIdFromUrl() || firstLayerIdInConfig;
+    this._initialLayerId =
+      this._getValidLayerIdFromUrl() || firstLayerIdInConfig;
     this._visibleId = this._initialLayerId;
 
     // setup html elements
