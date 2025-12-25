@@ -32,8 +32,8 @@ const map = new maplibregl.Map({
   style: style,
   hash: "map",
   maplibreLogo: false,
+  // we disable rotation as long we do not have vector tiles
   dragRotate: false,
-  touchZoomRotate: false,
   attributionControl: true,
   maxZoom: 19,
   locale: {
@@ -44,6 +44,9 @@ const map = new maplibregl.Map({
     "NavigationControl.ZoomOut": "Herauszoomen",
   },
 });
+
+// on mobile: we disable rotation as long we do not have vector tiles
+map.touchZoomRotate.disableRotation();
 
 map.addControl(createSearchControl(maplibregl));
 
