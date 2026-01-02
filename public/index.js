@@ -19,8 +19,11 @@ const basemapConfig = {
   },
   oepnv: {
     displayName: "ÖPNV",
-    tiles: ["https://tile.geofabrik.de/25ab8b065d8149bd90c1876384259ebf/{z}/{x}/{y}.png"],
-    attribution: "ÖPNV Kartenstil von memomaps.de CC-BY-SA, Kartendaten © OpenStreetMap Mitwirkende",
+    tiles: [
+      "https://tile.geofabrik.de/25ab8b065d8149bd90c1876384259ebf/{z}/{x}/{y}.png",
+    ],
+    attribution:
+      "ÖPNV Kartenstil von memomaps.de CC-BY-SA, Kartendaten © OpenStreetMap Mitwirkende",
     thumbnail: "oepnv.png",
   },
 };
