@@ -17,11 +17,11 @@ const basemapConfig = {
     attribution: "Kartendaten © OpenStreetMap Mitwirkende",
     thumbnail: "osmorg.png",
   },
-  cyclosm: {
-    displayName: "CyclOSM",
-    tiles: ["https://c.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png"],
-    attribution: `Kartendaten © OpenStreetMap Mitwirkende. Stil von <a href="https://www.cyclosm.org" target="_blank">CyclOSM</a> gehostet von <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>`,
-    thumbnail: "cycle.png",
+  oepnv: {
+    displayName: "ÖPNV",
+    tiles: ["https://tile.geofabrik.de/25ab8b065d8149bd90c1876384259ebf/{z}/{x}/{y}.png"],
+    attribution: "ÖPNV Kartenstil von memomaps.de CC-BY-SA, Kartendaten © OpenStreetMap Mitwirkende",
+    thumbnail: "oepnv.png",
   },
 };
 
