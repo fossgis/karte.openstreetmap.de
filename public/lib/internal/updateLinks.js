@@ -1,5 +1,5 @@
 /**
- * Updates links with current map location
+ * Updates clickable links in HTML with current map location
  *
  * @param mapLibreMap The maplibre map
  */
