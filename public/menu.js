@@ -1,4 +1,4 @@
-/** 
+/**
  * Close dropdown menus when clicked outside of it
  */
 const closeDropdown = (event) => {
@@ -13,7 +13,7 @@ const closeDropdown = (event) => {
     }
 
     // find hidden checkbox that controls visibility and uncheck if needed
-    const hiddenCheckbox = dropdown.getElementsByTagName("input")[0]
+    const hiddenCheckbox = dropdown.getElementsByTagName("input")[0];
     if (hiddenCheckbox) hiddenCheckbox.checked = false;
   });
 };
