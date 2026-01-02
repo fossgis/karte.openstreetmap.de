@@ -1,16 +1,15 @@
-
 /**
  * Updates links with current map location
- * 
+ *
  * @param mapLibreMap The maplibre map
  */
 const setupLinkUpdate = (mapLibreMap) => {
   // the key of the attribute storing the template of the link
-  const TEMPLATE_KEY = "data-link-template"
+  const TEMPLATE_KEY = "data-link-template";
 
   // find all "a" elements containing "data-link-template" attribute
   const linkElements = document.querySelectorAll(`a[${TEMPLATE_KEY}]`);
-  
+
   // loop through links and update them
   const updateLinks = () => {
     linkElements.forEach((linkElement) => {
@@ -23,7 +22,7 @@ const setupLinkUpdate = (mapLibreMap) => {
       const latitude = center.lat.toFixed(6);
 
       // get link template stored as attribute
-      const linkTemplate = linkElement.getAttribute(TEMPLATE_KEY)
+      const linkTemplate = linkElement.getAttribute(TEMPLATE_KEY);
 
       // replace template with zoom and center
       const updatedLink = linkTemplate
