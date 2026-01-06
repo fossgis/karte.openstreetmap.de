@@ -1,17 +1,19 @@
 /**
- * Updates clickable links in HTML with current map location
+ * Updates clickable links
+ * 
+ * Replaces placeholders "ZOOM", "LATITUDE", "LONGITUDE" 
+ * with their respective values of the current map extent
  *
  * @param mapLibreMap The maplibre map
  */
 const setupLinkUpdate = (mapLibreMap) => {
   const LINK_TEMPLATE_KEY = "data-link-template";
 
-  // find links that shall be updated
-  const linkElements = document.querySelectorAll(`a[${LINK_TEMPLATE_KEY}]`);
+  const linksToUpdate = document.querySelectorAll(`a[${LINK_TEMPLATE_KEY}]`);
 
   // loop through links and update them
   const updateLinks = () => {
-    linkElements.forEach((linkElement) => {
+    linksToUpdate.forEach((linkElement) => {
       // get current map state
       const zoom = Math.round(mapLibreMap.getZoom());
       const center = mapLibreMap.getCenter();
