@@ -3,6 +3,7 @@ import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.min.js";
 
 import { BasemapSwitcher } from "./lib/internal/BasemapSwitcher.js";
 import { createSearchControl } from "./lib/internal/search.js";
+import { setupLinkUpdate } from "./lib/internal/updateLinks.js";
 
 const basemapConfig = {
   de: {
@@ -70,5 +71,6 @@ map.addControl(new maplibregl.ScaleControl(), "bottom-right");
 
 map.addControl(new maplibregl.GeolocateControl());
 
+setupLinkUpdate(map);
 const basemapSwitcher = new BasemapSwitcher(basemapConfig);
 map.addControl(basemapSwitcher);

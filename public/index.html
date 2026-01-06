@@ -69,15 +69,21 @@
               <li>
                 <div class="routing-buttons">
                   <a
-                    href="https://openrouteservice.org/directions"
+                    data-link-template="https://maps.openrouteservice.org/directions#/place/@LONGITUDE,LATITUDE,ZOOM"
                     target="_blank"
                   >
                     <img src="/icons/walk-outline.svg" alt="Zu Fuß">
                   </a>
-                  <a href="https://brouter.de/brouter-web" target="_blank">
+                  <a
+                    data-link-template="https://brouter.de/brouter-web/#map=ZOOM/LATITUDE/LONGITUDE/standard"
+                    target="_blank"
+                  >
                     <img src="/icons/bicycle-outline.svg" alt="Fahrrad">
                   </a>
-                  <a href="https://routing.openstreetmap.de/" target="_blank">
+                  <a
+                    data-link-template="https://routing.openstreetmap.de/?z=ZOOM&center=LATITUDE%2CLONGITUDE&srv=0"
+                    target="_blank"
+                  >
                     <img src="/icons/car-outline.svg" alt="Auto">
                   </a>
                 </div>
@@ -87,30 +93,36 @@
                 hier aufgeführt sind.
               </li>
               <li>
-                <a href="https://graphhopper.com/maps" target="_blank"
+                <a
+                  data-link-template="https://graphhopper.com/maps/?point=LATITUDE%2CLONGITUDE&point=&profile=bike"
+                  target="_blank"
                   >GraphHopper<span>↗</span></a
                 >
               </li>
               <li>
-                <a href="https://brouter.de/brouter-web" target="_blank"
+                <a
+                  data-link-template="https://brouter.de/brouter-web/#map=ZOOM/LATITUDE/LONGITUDE/standard"
+                  target="_blank"
                   >BRouter<span>↗</span></a
                 >
               </li>
               <li>
                 <a
-                  href="https://openrouteservice.org/directions"
+                  data-link-template="https://maps.openrouteservice.org/directions#/place/@LONGITUDE,LATITUDE,ZOOM"
                   target="_blank"
                   >Openrouteservice<span>↗</span></a
                 >
               </li>
               <li>
-                <a href="https://routing.openstreetmap.de/" target="_blank"
+                <a
+                  data-link-template="https://routing.openstreetmap.de/?z=ZOOM&center=LATITUDE%2CLONGITUDE"
+                  target="_blank"
                   >OSRM<span>↗</span></a
                 >
               </li>
               <li>
                 <a
-                  href="https://valhalla.openstreetmap.de/directions"
+                  data-link-template="https://valhalla.openstreetmap.de"
                   target="_blank"
                   >Valhalla<span>↗</span></a
                 >
@@ -133,12 +145,16 @@
                 Du kannst Fehler melden oder die Karte direkt verbessern
               </li>
               <li>
-                <a href="https://www.openstreetmap.org/note/new" target="_blank"
+                <a
+                  data-link-template="https://www.openstreetmap.org/note/new#map=ZOOM/LATITUDE/LONGITUDE"
+                  target="_blank"
                   >Fehler melden<span>↗</span></a
                 >
               </li>
               <li>
-                <a href="https://www.openstreetmap.org/edit" target="_blank"
+                <a
+                  data-link-template="https://www.openstreetmap.org/edit#map=ZOOM/LATITUDE/LONGITUDE"
+                  target="_blank"
                   >Karte editieren<span>↗</span></a
                 >
               </li>
