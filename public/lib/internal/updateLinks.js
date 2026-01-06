@@ -18,7 +18,7 @@ const setupLinkUpdate = (mapLibreMap) => {
       const longitude = center.lng.toFixed(6);
       const latitude = center.lat.toFixed(6);
 
-      // adjust link 
+      // adjust link
       const linkTemplate = linkElement.getAttribute(LINK_TEMPLATE_KEY);
       const updatedLink = linkTemplate
         .replace("ZOOM", zoom)
