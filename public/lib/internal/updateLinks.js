@@ -1,7 +1,7 @@
 /**
  * Updates clickable links
- * 
- * Replaces placeholders "ZOOM", "LATITUDE", "LONGITUDE" 
+ *
+ * Replaces placeholders "ZOOM", "LATITUDE", "LONGITUDE"
  * with their respective values of the current map extent
  *
  * @param mapLibreMap The maplibre map
