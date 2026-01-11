@@ -39,8 +39,6 @@ const map = new maplibregl.Map({
   bounds: boundsGermany,
   hash: "map",
   maplibreLogo: false,
-  // we disable rotation as long we do not have vector tiles
-  dragRotate: false,
   attributionControl: true,
   maxZoom: 19,
   locale: {
@@ -50,10 +48,17 @@ const map = new maplibregl.Map({
     "NavigationControl.ZoomIn": "Hineinzoomen",
     "NavigationControl.ZoomOut": "Herauszoomen",
   },
+  dragRotate: false,
+  // prevent users changing pitch with keyboard shortcuts
+  maxPitch: 0,
 });
 
-// on mobile: we disable rotation as long we do not have vector tiles
+// on desktop: prevent keyboard rotating using "shift" + arrow keys
+map.keyboard.disableRotation();
+
+// on mobile: prevent rotation and pitch, but leave zoom
 map.touchZoomRotate.disableRotation();
+map.touchPitch.disable();
 
 // set basemaps
 Object.entries(basemapConfig).forEach(([id, config]) => {
