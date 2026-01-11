@@ -39,6 +39,9 @@ const map = new maplibregl.Map({
   bounds: boundsGermany,
   hash: "map",
   maplibreLogo: false,
+  dragRotate: false,
+  // prevent users changing pitch with keyboard shortcuts
+  maxPitch: 0,
   attributionControl: true,
   maxZoom: 19,
   locale: {
@@ -48,9 +51,6 @@ const map = new maplibregl.Map({
     "NavigationControl.ZoomIn": "Hineinzoomen",
     "NavigationControl.ZoomOut": "Herauszoomen",
   },
-  dragRotate: false,
-  // prevent users changing pitch with keyboard shortcuts
-  maxPitch: 0,
 });
 
 // on desktop: prevent keyboard rotating using "shift" + arrow keys
