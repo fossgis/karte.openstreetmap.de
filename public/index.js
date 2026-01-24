@@ -74,3 +74,52 @@ map.addControl(new maplibregl.GeolocateControl());
 setupLinkUpdate(map);
 const basemapSwitcher = new BasemapSwitcher(basemapConfig);
 map.addControl(basemapSwitcher);
+
+/**
+ * Make menu of website interactive
+ */
+const setupMenu = () => {
+  // must be in sync with css
+  const mobileMaxWidth = 768;
+
+  // get HTML elements
+  const nav = document.querySelector("nav.nav");
+  const menus = document.querySelectorAll(".menu");
+  const mobileMenuButton = document.querySelector("button.hamburger-menu");
+  const menuToggleElements = document.querySelectorAll("button.menu-toggle");
+
+  const closeAllMenus = () => menus.forEach((m) => m.classList.add("hidden"));
+
+  // toggle mobile navigation
+  mobileMenuButton.addEventListener("click", () => {
+    nav.style.display = nav.style.display === "flex" ? "none" : "flex";
+  });
+
+  // setup dropdown menus
+  menuToggleElements.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const targetMenu = document.getElementById(toggle.dataset.target);
+      const isHidden = targetMenu.classList.contains("hidden");
+      closeAllMenus();
+      if (isHidden) targetMenu.classList.remove("hidden");
+    });
+  });
+
+  // close menus when interacting outside
+  document.addEventListener("pointerdown", (event) => {
+    // Skip if click is inside the navigation or the hamburger menu
+    const isClickInsideNav =
+      event.target.closest("button.hamburger-menu") ||
+      event.target.closest(".nav");
+    if (isClickInsideNav) return;
+
+    closeAllMenus();
+    // hide mobile navigation
+    if (window.innerWidth <= mobileMaxWidth) nav.style.display = "none";
+  });
+
+  window.addEventListener("resize", closeAllMenus);
+};
+
+// setup menu after page is loaded
+document.addEventListener("DOMContentLoaded", setupMenu);
