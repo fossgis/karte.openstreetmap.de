@@ -40,7 +40,8 @@ const map = new maplibregl.Map({
   hash: "map",
   maplibreLogo: false,
   dragRotate: false,
-  touchZoomRotate: false,
+  // prevent users changing pitch with keyboard shortcuts
+  maxPitch: 0,
   attributionControl: true,
   maxZoom: 19,
   locale: {
@@ -51,6 +52,13 @@ const map = new maplibregl.Map({
     "NavigationControl.ZoomOut": "Herauszoomen",
   },
 });
+
+// on desktop: prevent keyboard rotating using "shift" + arrow keys
+map.keyboard.disableRotation();
+
+// on mobile: prevent rotation and pitch, but leave zoom
+map.touchZoomRotate.disableRotation();
+map.touchPitch.disable();
 
 // set basemaps
 Object.entries(basemapConfig).forEach(([id, config]) => {
