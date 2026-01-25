@@ -38,143 +38,104 @@
         <img src="/img/osmde.svg" alt="OpenStreetMap Deutschland" class="logo">
       </a>
 
-      <!-- Hidden checkbox for mobile menu toggle  -->
-      <input
-        type="checkbox"
-        id="menu-toggle"
-        class="menu-toggle"
-        aria-label="Menu"
-      >
+      <!-- hamburger button (visible only on mobile) -->
+      <button class="hamburger-menu">☰</button>
 
-      <!-- Hamburger button (visible only on mobile) -->
-      <label for="menu-toggle" class="hamburger-menu" aria-expanded="false">
-        ☰
-      </label>
-
-      <!-- Main navigation menu -->
+      <!-- main navigation menu -->
       <nav class="nav">
-        <ul class="nav-list">
-          <li class="dropdown">
-            <input
-              type="checkbox"
-              id="dropdown-routing"
-              class="dropdown-toggle-checkbox"
-              hidden
-            >
-            <label for="dropdown-routing" class="dropdown-toggle menu-item">
-              Routenplanung
-              <span>▾</span>
-            </label>
-            <ul class="dropdown-menu">
-              <li>
-                <div class="routing-buttons">
-                  <a
-                    data-link-template="https://maps.openrouteservice.org/directions#/place/@LONGITUDE,LATITUDE,ZOOM"
-                    target="_blank"
-                  >
-                    <img src="/icons/walk-outline.svg" alt="Zu Fuß">
-                  </a>
-                  <a
-                    data-link-template="https://brouter.de/brouter-web/#map=ZOOM/LATITUDE/LONGITUDE/standard"
-                    target="_blank"
-                  >
-                    <img src="/icons/bicycle-outline.svg" alt="Fahrrad">
-                  </a>
-                  <a
-                    data-link-template="https://routing.openstreetmap.de/?z=ZOOM&center=LATITUDE%2CLONGITUDE&srv=0"
-                    target="_blank"
-                  >
-                    <img src="/icons/car-outline.svg" alt="Auto">
-                  </a>
-                </div>
-              </li>
-              <li class="dropdown-menu-description">
-                Es gibt mehrere auf OpenStreetMap basierende Routingdienste die
-                hier aufgeführt sind.
-              </li>
-              <li>
-                <a
-                  data-link-template="https://graphhopper.com/maps/?point=LATITUDE%2CLONGITUDE&point=&profile=bike"
-                  target="_blank"
-                  >GraphHopper<span>↗</span></a
-                >
-              </li>
-              <li>
-                <a
-                  data-link-template="https://brouter.de/brouter-web/#map=ZOOM/LATITUDE/LONGITUDE/standard"
-                  target="_blank"
-                  >BRouter<span>↗</span></a
-                >
-              </li>
-              <li>
-                <a
-                  data-link-template="https://maps.openrouteservice.org/directions#/place/@LONGITUDE,LATITUDE,ZOOM"
-                  target="_blank"
-                  >Openrouteservice<span>↗</span></a
-                >
-              </li>
-              <li>
-                <a
-                  data-link-template="https://routing.openstreetmap.de/?z=ZOOM&center=LATITUDE%2CLONGITUDE"
-                  target="_blank"
-                  >OSRM<span>↗</span></a
-                >
-              </li>
-              <li>
-                <a
-                  data-link-template="https://valhalla.openstreetmap.de"
-                  target="_blank"
-                  >Valhalla<span>↗</span></a
-                >
-              </li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <input
-              type="checkbox"
-              id="dropdown-improve"
-              class="dropdown-toggle-checkbox"
-              hidden
-            >
-            <label for="dropdown-improve" class="dropdown-toggle menu-item">
-              Karte verbessern
-              <span>▾</span>
-            </label>
-            <ul class="dropdown-menu">
-              <li class="dropdown-menu-description">
-                Du kannst Fehler melden oder die Karte direkt verbessern
-              </li>
-              <li>
-                <a
-                  data-link-template="https://www.openstreetmap.org/note/new#map=ZOOM/LATITUDE/LONGITUDE"
-                  target="_blank"
-                  >Fehler melden<span>↗</span></a
-                >
-              </li>
-              <li>
-                <a
-                  data-link-template="https://www.openstreetmap.org/edit#map=ZOOM/LATITUDE/LONGITUDE"
-                  target="_blank"
-                  >Karte editieren<span>↗</span></a
-                >
-              </li>
-            </ul>
-          </li>
-          <li>
+        <!-- menu start -->
+        <div class="dropdown-group">
+          <button class="menu-toggle" data-target="menu-routing">
+            Routenplanung <span>▾</span>
+          </button>
+          <div id="menu-routing" class="menu hidden">
+            <div class="routing-buttons">
+              <a
+                data-link-template="https://maps.openrouteservice.org/directions#/place/@LONGITUDE,LATITUDE,ZOOM"
+                target="_blank"
+              >
+                <img src="/icons/walk-outline.svg" alt="Zu Fuß">
+              </a>
+              <a
+                data-link-template="https://brouter.de/brouter-web/#map=ZOOM/LATITUDE/LONGITUDE/standard"
+                target="_blank"
+              >
+                <img src="/icons/bicycle-outline.svg" alt="Fahrrad">
+              </a>
+              <a
+                data-link-template="https://routing.openstreetmap.de/?z=ZOOM&center=LATITUDE%2CLONGITUDE&srv=0"
+                target="_blank"
+              >
+                <img src="/icons/car-outline.svg" alt="Auto">
+              </a>
+            </div>
+            <div class="menu-description">
+              Es gibt mehrere auf OpenStreetMap basierende Routingdienste die
+              hier aufgeführt sind.
+            </div>
             <a
-              class="menu-item"
-              href="https://www.openstreetmap.de/"
+              data-link-template="https://graphhopper.com/maps/?point=LATITUDE%2CLONGITUDE&point=&profile=bike"
               target="_blank"
+              >GraphHopper<span>↗</span></a
             >
-              Über OpenStreetMap
-              <span>↗</span></a
+            <a
+              data-link-template="https://brouter.de/brouter-web/#map=ZOOM/LATITUDE/LONGITUDE/standard"
+              target="_blank"
+              >BRouter<span>↗</span></a
             >
-          </li>
-        </ul>
+            <a
+              data-link-template="https://maps.openrouteservice.org/directions#/place/@LONGITUDE,LATITUDE,ZOOM"
+              target="_blank"
+              >Openrouteservice<span>↗</span></a
+            >
+            <a
+              data-link-template="https://routing.openstreetmap.de/?z=ZOOM&center=LATITUDE%2CLONGITUDE"
+              target="_blank"
+              >OSRM<span>↗</span></a
+            >
+            <a
+              data-link-template="https://valhalla.openstreetmap.de"
+              target="_blank"
+              >Valhalla<span>↗</span></a
+            >
+          </div>
+        </div>
+        <!-- menu end -->
+
+        <!-- menu start -->
+        <div class="dropdown-group">
+          <button class="menu-toggle" data-target="menu-improve">
+            Karte verbessern <span>▾</span>
+          </button>
+          <div id="menu-improve" class="menu hidden">
+            <div class="menu-description">
+              Du kannst Fehler melden oder die Karte direkt verbessern
+            </div>
+            <a
+              data-link-template="https://www.openstreetmap.org/note/new#map=ZOOM/LATITUDE/LONGITUDE"
+              target="_blank"
+              >Fehler melden<span>↗</span></a
+            >
+            <a
+              data-link-template="https://www.openstreetmap.org/edit#map=ZOOM/LATITUDE/LONGITUDE"
+              target="_blank"
+              >Karte editieren<span>↗</span></a
+            >
+          </div>
+        </div>
+        <!-- menu end -->
+
+        <a
+          class="menu-link"
+          href="https://www.openstreetmap.de/"
+          target="_blank"
+        >
+          Über OpenStreetMap <span>↗</span>
+        </a>
       </nav>
     </header>
 
-    <!-- Map container -->
+    <!-- map container -->
     <main id="map"></main>
   </body>
 </html>
