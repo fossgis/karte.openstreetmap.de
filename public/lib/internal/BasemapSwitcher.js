@@ -48,12 +48,12 @@ export class BasemapSwitcher {
     });
 
     // hide basemap cards, when user clicks anywhere
-    document.addEventListener("click", () => {
+    document.addEventListener("pointerdown", () => {
       basemapOptions.classList.add("hidden");
     });
 
     // prevent hiding when user clicks on card again
-    basemapOptions.addEventListener("click", (event) => {
+    basemapOptions.addEventListener("pointerdown", (event) => {
       event.stopPropagation();
     });
 
