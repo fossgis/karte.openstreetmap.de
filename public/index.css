@@ -36,7 +36,7 @@
   --color-desc: #666;
   --color-basemap-tile: darkgray;
   --menu-radius: 3px;
-  --menu-padding: 0.5rem 1rem;
+  --menu-padding: 4px 12px;
 }
 
 body {
@@ -61,7 +61,7 @@ a {
   align-items: center;
   border-bottom: 1px solid var(--color-border);
   position: relative;
-  padding: 5px;
+  padding: 5px 10px;
 }
 
 .logo {
@@ -92,7 +92,7 @@ a {
 
 .menu-toggle:hover,
 .menu-link:hover {
-  background-color: var(--color-grey);
+  background-color: #ddd;
 }
 
 .menu {
@@ -112,7 +112,7 @@ a {
 }
 
 .menu a:hover {
-  background-color: var(--color-grey);
+  background-color: #ddd;
 }
 
 .menu-description {
@@ -130,7 +130,8 @@ a {
 }
 
 .routing-buttons a {
-  padding: 0;
+  padding: 4px;
+  border-radius: 3px;
 }
 
 .routing-buttons img {
