@@ -1,6 +1,33 @@
 @import "./lib/external/maplibre-gl/maplibre-gl.css";
 @import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.css";
 
+@font-face {
+  font-family: "Sarabun";
+  src:
+    url("/fonts/Sarabun-Regular.woff2") format("woff2"),
+    url("/fonts/Sarabun-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Sarabun";
+  src:
+    url("/fonts/Sarabun-Bold.woff2") format("woff2"),
+    url("/fonts/Sarabun-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Sarabun";
+  src:
+    url("/fonts/Sarabun-Italic.woff2") format("woff2"),
+    url("/fonts/Sarabun-Italic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+}
+
 :root {
   --color-bg: #fff;
   --color-grey: #f8f8f8;
@@ -17,6 +44,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-family: "Sarabun", sans-serif;
 }
 
 main {
@@ -59,7 +87,7 @@ a {
   border: none;
   color: var(--color-link);
   padding: var(--menu-padding);
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .menu-toggle:hover,
