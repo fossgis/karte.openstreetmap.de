@@ -1,6 +1,33 @@
 @import "./lib/external/maplibre-gl/maplibre-gl.css";
 @import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.css";
 
+@font-face {
+  font-family: "Sarabun";
+  src:
+    url("/fonts/Sarabun-Regular.woff2") format("woff2"),
+    url("/fonts/Sarabun-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Sarabun";
+  src:
+    url("/fonts/Sarabun-Bold.woff2") format("woff2"),
+    url("/fonts/Sarabun-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Sarabun";
+  src:
+    url("/fonts/Sarabun-Italic.woff2") format("woff2"),
+    url("/fonts/Sarabun-Italic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+}
+
 :root {
   --color-bg: #fff;
   --color-grey: #f8f8f8;
@@ -9,7 +36,7 @@
   --color-desc: #666;
   --color-basemap-tile: darkgray;
   --menu-radius: 3px;
-  --menu-padding: 0.5rem 1rem;
+  --menu-padding: 4px 12px;
 }
 
 body {
@@ -17,6 +44,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-family: "Sarabun", sans-serif;
 }
 
 main {
@@ -33,7 +61,7 @@ a {
   align-items: center;
   border-bottom: 1px solid var(--color-border);
   position: relative;
-  padding: 5px;
+  padding: 5px 10px;
 }
 
 .logo {
@@ -59,12 +87,12 @@ a {
   border: none;
   color: var(--color-link);
   padding: var(--menu-padding);
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .menu-toggle:hover,
 .menu-link:hover {
-  background-color: var(--color-grey);
+  background-color: #ddd;
 }
 
 .menu {
@@ -84,7 +112,7 @@ a {
 }
 
 .menu a:hover {
-  background-color: var(--color-grey);
+  background-color: #ddd;
 }
 
 .menu-description {
@@ -102,7 +130,8 @@ a {
 }
 
 .routing-buttons a {
-  padding: 0;
+  padding: 4px;
+  border-radius: 3px;
 }
 
 .routing-buttons img {
