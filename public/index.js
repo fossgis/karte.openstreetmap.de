@@ -79,6 +79,8 @@ map.addControl(new maplibregl.ScaleControl(), "bottom-right");
 
 map.addControl(new maplibregl.GeolocateControl());
 
+map.addControl(new maplibregl.GlobeControl(), "top-right");
+
 setupLinkUpdate(map);
 const basemapSwitcher = new BasemapSwitcher(basemapConfig);
 map.addControl(basemapSwitcher);
