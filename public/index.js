@@ -4,6 +4,7 @@ import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.min.js";
 import { BasemapSwitcher } from "./lib/internal/BasemapSwitcher.js";
 import { createSearchControl } from "./lib/internal/search.js";
 import { setupLinkUpdate } from "./lib/internal/updateLinks.js";
+import { getUrlParam, setUrlParam } from "./lib/internal/util.js";
 
 const basemapConfig = {
   de: {
@@ -34,6 +35,9 @@ const boundsGermany = [
   [16, 56],
 ];
 
+const readProjection = getUrlParam("projection");
+console.log("READ", readProjection);
+
 const map = new maplibregl.Map({
   container: "map",
   bounds: boundsGermany,
@@ -51,6 +55,18 @@ const map = new maplibregl.Map({
     "NavigationControl.ZoomIn": "Hineinzoomen",
     "NavigationControl.ZoomOut": "Herauszoomen",
   },
+});
+
+map.on("style.load", () => {
+  map.setProjection({
+    type: readProjection,
+  });
+});
+
+map.on("projectiontransition", (event) => {
+  const { newProjection } = event;
+  setUrlParam("projection", newProjection);
+  console.log(`Projection changed to ${newProjection}`);
 });
 
 // on desktop: prevent keyboard rotating using "shift" + arrow keys
