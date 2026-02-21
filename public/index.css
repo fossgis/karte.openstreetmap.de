@@ -37,6 +37,7 @@
   --color-basemap-tile: darkgray;
   --menu-radius: 3px;
   --menu-padding: 4px 12px;
+  --header-height: 54px;
 }
 
 body {
@@ -47,8 +48,11 @@ body {
   font-family: "Sarabun", sans-serif;
 }
 
-main {
-  flex: 1;
+#map {
+  position: absolute;
+  top: var(--header-height);
+  bottom: 0;
+  width: 100%;
 }
 
 a {
@@ -60,7 +64,16 @@ a {
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--color-border);
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--header-height);
+}
+
+/* direct children of header */
+.header > * {
   padding: 5px 10px;
 }
 
