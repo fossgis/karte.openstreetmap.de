@@ -5,6 +5,7 @@ export class BasemapSwitcher {
   constructor(basemapConfig) {
     this._basemapConfig = basemapConfig;
     this._LAYER_PARAM_NAME = "layer";
+    this._CONTROL_BUTTON_CONTENT_ID = "basemap-switcher-toggle-button"
   }
 
   onAdd(map) {
@@ -48,7 +49,15 @@ export class BasemapSwitcher {
     });
 
     // hide basemap cards, when user clicks anywhere
-    document.addEventListener("pointerdown", () => {
+    document.addEventListener("pointerdown", (event) => {
+      const {target} = event
+
+      // prevent hiding when main control button is hit
+      const controlButtonHit = target.matches('#' + this._CONTROL_BUTTON_CONTENT_ID )
+      if (controlButtonHit) {
+        return
+      }  
+
       basemapOptions.classList.add("hidden");
     });
 
@@ -76,8 +85,9 @@ export class BasemapSwitcher {
       event.stopPropagation();
       basemapOptions.classList.toggle("hidden");
     });
-
+    
     const btnContent = document.createElement("span");
+    btnContent.id = this._CONTROL_BUTTON_CONTENT_ID 
     btnContent.classList.add("maplibregl-ctrl-icon", "basemap-switcher-icon");
 
     outerButtonDiv.appendChild(innerButtonDiv);
