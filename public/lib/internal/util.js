@@ -1,4 +1,4 @@
-const getParams = () => {
+const _getParams = () => {
   const { hash } = window.location;
 
   // remove '#' at first character
@@ -8,7 +8,7 @@ const getParams = () => {
 };
 
 const setUrlParam = (key, value) => {
-  const params = getParams();
+  const params = _getParams();
   params.set(key, value);
 
   let updatedHash = `#${params.toString()}`;
@@ -19,7 +19,7 @@ const setUrlParam = (key, value) => {
 };
 
 const getUrlParam = (key) => {
-  const params = getParams();
+  const params = _getParams();
   return params.get(key);
 };
 

@@ -57,17 +57,37 @@ const map = new maplibregl.Map({
   },
 });
 
+
+
 map.on("style.load", () => {
   map.setProjection({
     type: readProjection,
   });
 });
 
-map.on("projectiontransition", (event) => {
-  const { newProjection } = event;
-  setUrlParam("projection", newProjection);
-  console.log(`Projection changed to ${newProjection}`);
-});
+map.on('load', ()=>{
+  
+  map.on("projectiontransition", (event) => {
+    console.log('---------------------');
+  console.log("ON projectiontransition");
+
+  console.log("MAP Loaded: " + map.loaded());
+  
+  
+  const currentProjection = map.getProjection()
+  console.log(`Current projection: ${currentProjection}`)
+
+  if (!currentProjection)
+    {
+      console.log('No Current projection. Return.')
+      // return
+    } 
+    
+    const { newProjection } = event;
+    setUrlParam("projection", newProjection);
+    console.log(`Projection changed to: ${newProjection}`);
+  });
+})
 
 // on desktop: prevent keyboard rotating using "shift" + arrow keys
 map.keyboard.disableRotation();
