@@ -54,7 +54,7 @@ export class BasemapSwitcher {
 
       // prevent hiding when main control button is hit
       const controlButtonHit = target.matches(
-        "#" + this._CONTROL_BUTTON_CONTENT_ID,
+        `#${this._CONTROL_BUTTON_CONTENT_ID}`,
       );
       if (controlButtonHit) {
         return;
