@@ -1,3 +1,5 @@
+import { getUrlParam, removeUrlParam, setUrlParam } from "./util.js";
+
 /**
  * Updates clickable links
  *
@@ -40,4 +42,36 @@ const setupLinkUpdate = (mapLibreMap) => {
   });
 };
 
-export { setupLinkUpdate };
+/**
+ * Updates the permalink when globe projection is activated.
+ *
+ * @param mapLibreMap The maplibre map
+ */
+const setGlobePermalinkUpdate = (mapLibreMap) => {
+  const GLOBE_PROJECTION = "globe";
+  const PROJECTION_URL_PARAM = "projection";
+
+  // set map projection from permalink
+  mapLibreMap.on("style.load", () => {
+    const projection = getUrlParam(PROJECTION_URL_PARAM);
+    if (projection === GLOBE_PROJECTION) {
+      mapLibreMap.setProjection({
+        type: projection,
+      });
+    }
+  });
+
+  // listen on projection change after map is loaded
+  mapLibreMap.on("load", () => {
+    mapLibreMap.on("projectiontransition", (event) => {
+      const { newProjection } = event;
+      if (newProjection === GLOBE_PROJECTION) {
+        setUrlParam(PROJECTION_URL_PARAM, newProjection);
+      } else {
+        removeUrlParam(PROJECTION_URL_PARAM);
+      }
+    });
+  });
+};
+
+export { setupLinkUpdate, setGlobePermalinkUpdate };

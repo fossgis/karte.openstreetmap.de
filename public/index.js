@@ -2,13 +2,11 @@ import "./lib/external/maplibre-gl/maplibre-gl.js";
 import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.min.js";
 
 import { BasemapSwitcher } from "./lib/internal/BasemapSwitcher.js";
-import { createSearchControl } from "./lib/internal/search.js";
-import { setupLinkUpdate } from "./lib/internal/updateLinks.js";
 import {
-  getUrlParam,
-  removeUrlParam,
-  setUrlParam,
-} from "./lib/internal/util.js";
+  setGlobePermalinkUpdate,
+  setupLinkUpdate,
+} from "./lib/internal/mapUtils.js";
+import { createSearchControl } from "./lib/internal/search.js";
 
 const basemapConfig = {
   de: {
@@ -54,29 +52,6 @@ const map = new maplibregl.Map({
   },
 });
 
-const GLOBE_PROJECTION = "globe";
-const PROJECTION_URL_PARAM = "projection";
-
-map.on("style.load", () => {
-  const projection = getUrlParam(PROJECTION_URL_PARAM);
-  if (projection === GLOBE_PROJECTION) {
-    map.setProjection({
-      type: projection,
-    });
-  }
-});
-
-map.on("load", () => {
-  map.on("projectiontransition", (event) => {
-    const { newProjection } = event;
-    if (newProjection === GLOBE_PROJECTION) {
-      setUrlParam(PROJECTION_URL_PARAM, newProjection);
-    } else {
-      removeUrlParam(PROJECTION_URL_PARAM);
-    }
-  });
-});
-
 // on desktop: prevent keyboard rotating using "shift" + arrow keys
 map.keyboard.disableRotation();
 
@@ -104,6 +79,8 @@ map.addControl(new maplibregl.ScaleControl(), "bottom-right");
 map.addControl(new maplibregl.GeolocateControl());
 
 map.addControl(new maplibregl.GlobeControl(), "top-right");
+
+setGlobePermalinkUpdate(map);
 
 setupLinkUpdate(map);
 const basemapSwitcher = new BasemapSwitcher(basemapConfig);
