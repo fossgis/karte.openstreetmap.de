@@ -30,20 +30,13 @@ const basemapConfig = {
   },
 };
 
-const boundsGermany = [
-  [5, 47],
-  [16, 56],
-];
-
-const readProjection = getUrlParam("projection");
-console.log("READ", readProjection);
-
 const map = new maplibregl.Map({
   container: "map",
-  bounds: boundsGermany,
   hash: "map",
   maplibreLogo: false,
   dragRotate: false,
+  center: [11, 51.5], // center Germany
+  zoom: 5,
   // prevent users changing pitch with keyboard shortcuts
   maxPitch: 0,
   attributionControl: true,
@@ -57,37 +50,32 @@ const map = new maplibregl.Map({
   },
 });
 
-
-
 map.on("style.load", () => {
   map.setProjection({
     type: readProjection,
   });
 });
 
-map.on('load', ()=>{
-  
+map.on("load", () => {
   map.on("projectiontransition", (event) => {
-    console.log('---------------------');
-  console.log("ON projectiontransition");
+    console.log("---------------------");
+    console.log("ON projectiontransition");
 
-  console.log("MAP Loaded: " + map.loaded());
-  
-  
-  const currentProjection = map.getProjection()
-  console.log(`Current projection: ${currentProjection}`)
+    console.log("MAP Loaded: " + map.loaded());
 
-  if (!currentProjection)
-    {
-      console.log('No Current projection. Return.')
+    const currentProjection = map.getProjection();
+    console.log(`Current projection: ${currentProjection}`);
+
+    if (!currentProjection) {
+      console.log("No Current projection. Return.");
       // return
-    } 
-    
+    }
+
     const { newProjection } = event;
     setUrlParam("projection", newProjection);
     console.log(`Projection changed to: ${newProjection}`);
   });
-})
+});
 
 // on desktop: prevent keyboard rotating using "shift" + arrow keys
 map.keyboard.disableRotation();
