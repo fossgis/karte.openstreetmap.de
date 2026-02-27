@@ -54,9 +54,12 @@ const map = new maplibregl.Map({
   },
 });
 
+const GLOBE_PROJECTION = "globe";
+const PROJECTION_URL_PARAM = "projection";
+
 map.on("style.load", () => {
-  const projection = getUrlParam("projection");
-  if (projection === "globe") {
+  const projection = getUrlParam(PROJECTION_URL_PARAM);
+  if (projection === GLOBE_PROJECTION) {
     map.setProjection({
       type: projection,
     });
@@ -66,10 +69,10 @@ map.on("style.load", () => {
 map.on("load", () => {
   map.on("projectiontransition", (event) => {
     const { newProjection } = event;
-    if (newProjection === "globe") {
-      setUrlParam("projection", newProjection);
+    if (newProjection === GLOBE_PROJECTION) {
+      setUrlParam(PROJECTION_URL_PARAM, newProjection);
     } else {
-      removeUrlParam("projection");
+      removeUrlParam(PROJECTION_URL_PARAM);
     }
   });
 });
