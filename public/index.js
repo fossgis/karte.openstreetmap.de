@@ -29,17 +29,13 @@ const basemapConfig = {
   },
 };
 
-const boundsGermany = [
-  [5, 47],
-  [16, 56],
-];
-
 const map = new maplibregl.Map({
   container: "map",
-  bounds: boundsGermany,
   hash: "map",
   maplibreLogo: false,
   dragRotate: false,
+  center: [11, 51.5], // center Germany
+  zoom: 5,
   // prevent users changing pitch with keyboard shortcuts
   maxPitch: 0,
   attributionControl: true,
