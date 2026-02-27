@@ -23,4 +23,15 @@ const getUrlParam = (key) => {
   return params.get(key);
 };
 
-export { setUrlParam, getUrlParam };
+const removeUrlParam = (key) => {
+  const params = _getParams();
+  params.delete(key);
+
+  let updatedHash = `#${params.toString()}`;
+  // make encoded slashes "/" human readable again
+  updatedHash = updatedHash.replaceAll("%2F", "/");
+
+  window.location.hash = updatedHash;
+};
+
+export { setUrlParam, getUrlParam, removeUrlParam };

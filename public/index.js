@@ -4,7 +4,11 @@ import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.min.js";
 import { BasemapSwitcher } from "./lib/internal/BasemapSwitcher.js";
 import { createSearchControl } from "./lib/internal/search.js";
 import { setupLinkUpdate } from "./lib/internal/updateLinks.js";
-import { getUrlParam, setUrlParam } from "./lib/internal/util.js";
+import {
+  getUrlParam,
+  removeUrlParam,
+  setUrlParam,
+} from "./lib/internal/util.js";
 
 const basemapConfig = {
   de: {
@@ -51,9 +55,12 @@ const map = new maplibregl.Map({
 });
 
 map.on("style.load", () => {
-  map.setProjection({
-    type: readProjection,
-  });
+  const projection = getUrlParam("projection");
+  if (projection === "globe") {
+    map.setProjection({
+      type: projection,
+    });
+  }
 });
 
 map.on("load", () => {
@@ -72,7 +79,11 @@ map.on("load", () => {
     }
 
     const { newProjection } = event;
-    setUrlParam("projection", newProjection);
+    if (newProjection === "globe") {
+      setUrlParam("projection", newProjection);
+    } else {
+      removeUrlParam("projection");
+    }
     console.log(`Projection changed to: ${newProjection}`);
   });
 });
