@@ -65,26 +65,12 @@ map.on("style.load", () => {
 
 map.on("load", () => {
   map.on("projectiontransition", (event) => {
-    console.log("---------------------");
-    console.log("ON projectiontransition");
-
-    console.log("MAP Loaded: " + map.loaded());
-
-    const currentProjection = map.getProjection();
-    console.log(`Current projection: ${currentProjection}`);
-
-    if (!currentProjection) {
-      console.log("No Current projection. Return.");
-      // return
-    }
-
     const { newProjection } = event;
     if (newProjection === "globe") {
       setUrlParam("projection", newProjection);
     } else {
       removeUrlParam("projection");
     }
-    console.log(`Projection changed to: ${newProjection}`);
   });
 });
 
