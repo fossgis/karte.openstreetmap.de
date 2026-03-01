@@ -96,9 +96,14 @@ const setupMenu = () => {
 
   const closeAllMenus = () => menus.forEach((m) => m.classList.add("hidden"));
 
-  // toggle mobile navigation
+  // click on mobile menu button
   mobileMenuButton.addEventListener("click", () => {
+    // toggle menu
     nav.style.display = nav.style.display === "flex" ? "none" : "flex";
+
+    // change button icon
+    mobileMenuButton.textContent =
+      mobileMenuButton.textContent === "☰" ? "🗙" : "☰";
   });
 
   // setup dropdown menus
