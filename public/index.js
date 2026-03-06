@@ -103,7 +103,7 @@ const setupMenu = () => {
 
     // change button icon
     mobileMenuButton.textContent =
-      mobileMenuButton.textContent === "☰" ? "🗙" : "☰";
+      mobileMenuButton.textContent === "☰" ? "✖" : "☰";
   });
 
   // setup dropdown menus
