@@ -49,26 +49,25 @@ const setupLinkUpdate = (mapLibreMap) => {
  */
 const setGlobePermalinkUpdate = (mapLibreMap) => {
   const GLOBE_PROJECTION = "globe";
-  const PROJECTION_URL_PARAM = "projection";
+  const GLOBE_URL_KEY = "globe";
+  const GLOBE_URL_VALID_VALUE = "1";
 
-  // set map projection from permalink
+  // when website initially loads, set globe projection if set in permalink
   mapLibreMap.on("style.load", () => {
-    const projection = getUrlParam(PROJECTION_URL_PARAM);
-    if (projection === GLOBE_PROJECTION) {
-      mapLibreMap.setProjection({
-        type: projection,
-      });
+    if (GLOBE_URL_VALID_VALUE === getUrlParam(GLOBE_URL_KEY)) {
+      mapLibreMap.setProjection({ type: GLOBE_PROJECTION });
     }
   });
 
-  // listen on projection change after map is loaded
+  // listen on projection change once map is loaded
   mapLibreMap.on("load", () => {
     mapLibreMap.on("projectiontransition", (event) => {
       const { newProjection } = event;
       if (newProjection === GLOBE_PROJECTION) {
-        setUrlParam(PROJECTION_URL_PARAM, newProjection);
+        setUrlParam(GLOBE_URL_KEY, GLOBE_URL_VALID_VALUE);
       } else {
-        removeUrlParam(PROJECTION_URL_PARAM);
+        // no URL param when project is web mercator
+        removeUrlParam(GLOBE_URL_KEY);
       }
     });
   });
