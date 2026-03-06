@@ -1,3 +1,5 @@
+import { getUrlParam, setUrlParam } from "./util.js";
+
 /**
  * A MapLibre control for switching basemaps
  */
@@ -177,14 +179,7 @@ export class BasemapSwitcher {
    * Returns layer id provided in URL if it is present in the basemap config
    */
   _getValidLayerIdFromUrl() {
-    const { hash } = window.location;
-
-    // remove '#' at first character
-    const queryString = hash.substring(1);
-
-    const params = new URLSearchParams(queryString);
-
-    const foundLayerId = params.get(this._LAYER_PARAM_NAME);
+    const foundLayerId = getUrlParam(this._LAYER_PARAM_NAME);
 
     // check if found layer id is present in basemap config
     const existingLayerIds = Object.keys(this._basemapConfig);
@@ -198,19 +193,7 @@ export class BasemapSwitcher {
    * Updates layer id in URL
    */
   _setLayerIdInUrl(layerId) {
-    const { hash } = window.location;
-
-    // remove '#' at first character
-    const queryString = hash.substring(1);
-
-    const params = new URLSearchParams(queryString);
-    params.set(this._LAYER_PARAM_NAME, layerId);
-
-    let updatedHash = `#${params.toString()}`;
-    // make encoded slashes "/" human readable again
-    updatedHash = updatedHash.replaceAll("%2F", "/");
-
-    window.location.hash = updatedHash;
+    setUrlParam(this._LAYER_PARAM_NAME, layerId);
   }
 
   onRemove() {
