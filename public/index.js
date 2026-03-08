@@ -90,9 +90,6 @@ map.addControl(basemapSwitcher);
  * Make menu of website interactive
  */
 const setupMenu = () => {
-  // must be in sync with css
-  const mobileMaxWidth = 768;
-
   // get HTML elements
   const nav = document.querySelector("nav.nav");
   const menus = document.querySelectorAll(".menu");
