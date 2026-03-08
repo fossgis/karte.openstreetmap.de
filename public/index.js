@@ -2,8 +2,11 @@ import "./lib/external/maplibre-gl/maplibre-gl.js";
 import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.min.js";
 
 import { BasemapSwitcher } from "./lib/internal/BasemapSwitcher.js";
+import {
+  setGlobePermalinkUpdate,
+  setupLinkUpdate,
+} from "./lib/internal/mapUtils.js";
 import { createSearchControl } from "./lib/internal/search.js";
-import { setupLinkUpdate } from "./lib/internal/updateLinks.js";
 
 const basemapConfig = {
   de: {
@@ -67,6 +70,7 @@ Object.entries(basemapConfig).forEach(([id, config]) => {
   });
   map.addLayer({ id, source: id, type: "raster" });
 });
+
 map.addControl(createSearchControl(maplibregl));
 
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }));
@@ -76,6 +80,8 @@ map.addControl(new maplibregl.ScaleControl(), "bottom-right");
 map.addControl(new maplibregl.GeolocateControl());
 
 map.addControl(new maplibregl.GlobeControl(), "top-right");
+
+setGlobePermalinkUpdate(map);
 
 setupLinkUpdate(map);
 const basemapSwitcher = new BasemapSwitcher(basemapConfig);
