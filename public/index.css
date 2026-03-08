@@ -171,7 +171,6 @@ a {
   }
 
   .nav {
-    display: none;
     flex-direction: column;
     position: absolute;
     top: 100%;
@@ -183,6 +182,10 @@ a {
     gap: 0;
     overflow: hidden;
     align-items: stretch;
+  }
+
+  .mobile-menu-hidden {
+    display: none;
   }
 
   .dropdown-group {
