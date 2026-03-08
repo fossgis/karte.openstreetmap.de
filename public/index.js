@@ -70,6 +70,7 @@ Object.entries(basemapConfig).forEach(([id, config]) => {
   });
   map.addLayer({ id, source: id, type: "raster" });
 });
+
 map.addControl(createSearchControl(maplibregl));
 
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }));

@@ -53,23 +53,18 @@ const setGlobePermalinkUpdate = (mapLibreMap) => {
   const GLOBE_URL_VALID_VALUE = "1";
 
   // when website initially loads, set globe projection if set in permalink
-  mapLibreMap.on("style.load", () => {
-    if (GLOBE_URL_VALID_VALUE === getUrlParam(GLOBE_URL_KEY)) {
-      mapLibreMap.setProjection({ type: GLOBE_PROJECTION });
-    }
-  });
+  if (GLOBE_URL_VALID_VALUE === getUrlParam(GLOBE_URL_KEY)) {
+    mapLibreMap.setProjection({ type: GLOBE_PROJECTION });
+  }
 
-  // listen on projection change once map is loaded
-  mapLibreMap.on("load", () => {
-    mapLibreMap.on("projectiontransition", (event) => {
-      const { newProjection } = event;
-      if (newProjection === GLOBE_PROJECTION) {
-        setUrlParam(GLOBE_URL_KEY, GLOBE_URL_VALID_VALUE);
-      } else {
-        // no URL param when project is web mercator
-        removeUrlParam(GLOBE_URL_KEY);
-      }
-    });
+  mapLibreMap.on("projectiontransition", (event) => {
+    const { newProjection } = event;
+    if (newProjection === GLOBE_PROJECTION) {
+      setUrlParam(GLOBE_URL_KEY, GLOBE_URL_VALID_VALUE);
+    } else {
+      // no URL param when project is web mercator
+      removeUrlParam(GLOBE_URL_KEY);
+    }
   });
 };
 
