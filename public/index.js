@@ -99,25 +99,37 @@ const setupMenu = () => {
   const mobileMenuButton = document.querySelector("button.hamburger-menu");
   const menuToggleElements = document.querySelectorAll("button.menu-toggle");
 
-  const closeAllMenus = () => menus.forEach((m) => m.classList.add("hidden"));
+  const closeSubMenus = () => menus.forEach((m) => m.classList.add("hidden"));
+
+  // get original menu icon from HTML to avoid duplication in JS
+  const originalMenuIcon = mobileMenuButton.textContent;
+
+  const showMobileMenu = () => {
+    nav.classList.remove("mobile-menu-hidden");
+    mobileMenuButton.textContent = "✖";
+  };
+
+  const hideMobileMenu = () => {
+    nav.classList.add("mobile-menu-hidden");
+    mobileMenuButton.textContent = originalMenuIcon;
+  };
 
   // click on mobile menu button
   mobileMenuButton.addEventListener("click", () => {
     // toggle menu
-    nav.style.display = nav.style.display === "flex" ? "none" : "flex";
-
-    // change button icon
-    mobileMenuButton.textContent =
-      mobileMenuButton.textContent === "☰" ? "✖" : "☰";
+    nav.classList.contains("mobile-menu-hidden")
+      ? showMobileMenu()
+      : hideMobileMenu();
   });
 
   // setup dropdown menus
   menuToggleElements.forEach((toggle) => {
+    // open submenu on click and close other open submenus
     toggle.addEventListener("click", () => {
-      const targetMenu = document.getElementById(toggle.dataset.target);
-      const isHidden = targetMenu.classList.contains("hidden");
-      closeAllMenus();
-      if (isHidden) targetMenu.classList.remove("hidden");
+      const clickedSubmenu = document.getElementById(toggle.dataset.target);
+      const isHidden = clickedSubmenu.classList.contains("hidden");
+      closeSubMenus();
+      if (isHidden) clickedSubmenu.classList.remove("hidden");
     });
   });
 
@@ -129,12 +141,14 @@ const setupMenu = () => {
       event.target.closest(".nav");
     if (isClickInsideNav) return;
 
-    closeAllMenus();
-    // hide mobile navigation
-    if (window.innerWidth <= mobileMaxWidth) nav.style.display = "none";
+    closeSubMenus();
+    hideMobileMenu();
   });
 
-  window.addEventListener("resize", closeAllMenus);
+  window.addEventListener("resize", () => {
+    closeSubMenus();
+    hideMobileMenu();
+  });
 };
 
 // setup menu after page is loaded
