@@ -159,6 +159,11 @@ a {
   display: none;
 }
 
+.maplibregl-ctrl-group button {
+  width: 36px;
+  height: 36px;
+}
+
 @media (max-width: 768px) {
   .hamburger-menu {
     display: block;
