@@ -129,6 +129,7 @@ export function createSearchControl(mapInstance) {
     maplibregl: mapInstance,
     limit: countDisplayedResults,
     language: defaultLanguage,
+    collapsed: true,
 
     // needed for autocomplete
     showResultsWhileTyping: true,
