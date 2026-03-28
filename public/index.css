@@ -159,6 +159,7 @@ a {
   display: none;
 }
 
+/* match size of search icon */
 .maplibregl-ctrl-group button {
   width: 36px;
   height: 36px;
