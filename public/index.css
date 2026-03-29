@@ -159,6 +159,16 @@ a {
   display: none;
 }
 
+/* match size of search icon */
+.maplibregl-ctrl-group button {
+  width: 36px;
+  height: 36px;
+}
+
+.maplibregl-ctrl-geocoder--icon {
+  fill: black;
+}
+
 @media (max-width: 768px) {
   .hamburger-menu {
     display: block;
