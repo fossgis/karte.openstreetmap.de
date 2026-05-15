@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", setupMenu);
 if (isWebGlActivated()) {
   setupMap();
 } else {
-  const mapContainer = document.getElementById("map");
-  mapContainer.textContent =
-    "Zur Anzeige dieser Karte muss Ihr Browser WebGL unterstützen.";
+  // show warning that WebGL is not available
+  const warningNoWebGL = document.getElementById("warning-no-webgl");
+  warningNoWebGL.style.display = "flex";
 }
