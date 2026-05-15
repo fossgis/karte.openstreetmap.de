@@ -8,84 +8,96 @@ import {
 } from "./lib/internal/mapUtils.js";
 import { createSearchControl } from "./lib/internal/search.js";
 
-const basemapConfig = {
-  de: {
-    displayName: "deutscher Stil",
-    tiles: ["https://tile.openstreetmap.de/{z}/{x}/{y}.png"],
-    attribution: "Kartendaten © OpenStreetMap Mitwirkende",
-    thumbnail: "osmde.png",
-  },
-  standard: {
-    displayName: "Standard",
-    tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
-    attribution: "Kartendaten © OpenStreetMap Mitwirkende",
-    thumbnail: "osmorg.png",
-  },
-  oepnv: {
-    displayName: "ÖPNV",
-    tiles: [
-      "https://tile.geofabrik.de/25ab8b065d8149bd90c1876384259ebf/{z}/{x}/{y}.png",
-    ],
-    attribution:
-      "ÖPNV Kartenstil von memomaps.de CC-BY-SA, Kartendaten © OpenStreetMap Mitwirkende",
-    thumbnail: "oepnv.png",
-  },
+const setupMap = () => {
+  const basemapConfig = {
+    de: {
+      displayName: "deutscher Stil",
+      tiles: ["https://tile.openstreetmap.de/{z}/{x}/{y}.png"],
+      attribution: "Kartendaten © OpenStreetMap Mitwirkende",
+      thumbnail: "osmde.png",
+    },
+    standard: {
+      displayName: "Standard",
+      tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+      attribution: "Kartendaten © OpenStreetMap Mitwirkende",
+      thumbnail: "osmorg.png",
+    },
+    oepnv: {
+      displayName: "ÖPNV",
+      tiles: [
+        "https://tile.geofabrik.de/25ab8b065d8149bd90c1876384259ebf/{z}/{x}/{y}.png",
+      ],
+      attribution:
+        "ÖPNV Kartenstil von memomaps.de CC-BY-SA, Kartendaten © OpenStreetMap Mitwirkende",
+      thumbnail: "oepnv.png",
+    },
+  };
+
+  const map = new maplibregl.Map({
+    container: "map",
+    hash: "map",
+    maplibreLogo: false,
+    dragRotate: false,
+    center: [11, 51.5], // center Germany
+    zoom: 5,
+    // prevent users changing pitch with keyboard shortcuts
+    maxPitch: 0,
+    attributionControl: true,
+    maxZoom: 19,
+    locale: {
+      "AttributionControl.ToggleAttribution": "Quellenangabe ein-/ausblenden",
+      "GeolocateControl.FindMyLocation": "Meinen Standort finden",
+      "GeolocateControl.LocationNotAvailable": "Standort nicht verfügbar",
+      "NavigationControl.ZoomIn": "Hineinzoomen",
+      "NavigationControl.ZoomOut": "Herauszoomen",
+    },
+  });
+
+  // on desktop: prevent keyboard rotating using "shift" + arrow keys
+  map.keyboard.disableRotation();
+
+  // on mobile: prevent rotation and pitch, but leave zoom
+  map.touchZoomRotate.disableRotation();
+  map.touchPitch.disable();
+
+  // set basemaps
+  Object.entries(basemapConfig).forEach(([id, config]) => {
+    const { tiles, attribution } = config;
+    map.addSource(id, {
+      type: "raster",
+      tileSize: 256,
+      attribution,
+      tiles,
+    });
+    map.addLayer({ id, source: id, type: "raster" });
+  });
+
+  map.addControl(createSearchControl(maplibregl));
+
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }));
+
+  map.addControl(new maplibregl.ScaleControl(), "bottom-right");
+
+  map.addControl(new maplibregl.GeolocateControl());
+
+  map.addControl(new maplibregl.GlobeControl(), "top-right");
+
+  setGlobePermalinkUpdate(map);
+
+  setupLinkUpdate(map);
+  const basemapSwitcher = new BasemapSwitcher(basemapConfig);
+  map.addControl(basemapSwitcher);
 };
 
-const map = new maplibregl.Map({
-  container: "map",
-  hash: "map",
-  maplibreLogo: false,
-  dragRotate: false,
-  center: [11, 51.5], // center Germany
-  zoom: 5,
-  // prevent users changing pitch with keyboard shortcuts
-  maxPitch: 0,
-  attributionControl: true,
-  maxZoom: 19,
-  locale: {
-    "AttributionControl.ToggleAttribution": "Quellenangabe ein-/ausblenden",
-    "GeolocateControl.FindMyLocation": "Meinen Standort finden",
-    "GeolocateControl.LocationNotAvailable": "Standort nicht verfügbar",
-    "NavigationControl.ZoomIn": "Hineinzoomen",
-    "NavigationControl.ZoomOut": "Herauszoomen",
-  },
-});
-
-// on desktop: prevent keyboard rotating using "shift" + arrow keys
-map.keyboard.disableRotation();
-
-// on mobile: prevent rotation and pitch, but leave zoom
-map.touchZoomRotate.disableRotation();
-map.touchPitch.disable();
-
-// set basemaps
-Object.entries(basemapConfig).forEach(([id, config]) => {
-  const { tiles, attribution } = config;
-  map.addSource(id, {
-    type: "raster",
-    tileSize: 256,
-    attribution,
-    tiles,
-  });
-  map.addLayer({ id, source: id, type: "raster" });
-});
-
-map.addControl(createSearchControl(maplibregl));
-
-map.addControl(new maplibregl.NavigationControl({ showCompass: false }));
-
-map.addControl(new maplibregl.ScaleControl(), "bottom-right");
-
-map.addControl(new maplibregl.GeolocateControl());
-
-map.addControl(new maplibregl.GlobeControl(), "top-right");
-
-setGlobePermalinkUpdate(map);
-
-setupLinkUpdate(map);
-const basemapSwitcher = new BasemapSwitcher(basemapConfig);
-map.addControl(basemapSwitcher);
+/**
+ * Checks if browser supports WebGL
+ * Inspired by: https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/By_example/Detect_WebGL
+ */
+function isWebGlActivated() {
+  const canvas = document.createElement("canvas");
+  const gl = canvas.getContext("webgl");
+  return gl instanceof WebGLRenderingContext;
+}
 
 /**
  * Make menu of website interactive
@@ -151,3 +163,11 @@ const setupMenu = () => {
 
 // setup menu after page is loaded
 document.addEventListener("DOMContentLoaded", setupMenu);
+
+if (isWebGlActivated()) {
+  setupMap();
+} else {
+  const mapContainer = document.getElementById("map");
+  mapContainer.textContent =
+    "Zur Anzeige dieser Karte muss Ihr Browser WebGL unterstützen.";
+}
