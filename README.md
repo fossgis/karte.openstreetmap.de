@@ -1,6 +1,6 @@
 # karte.openstreetmap.de
 
-This repository contains the map from [https://openstreetmap.de](https://openstreetmap.de) (work in progress).
+This repository contains the webmap that is deployed on  [https://karte.openstreetmap.de](https://karte.openstreetmap.de)
 
 ## Setup
 
@@ -28,10 +28,8 @@ biome check --fix
 
 ## Libraries
 
-External libraries shall be downloaded to `public/lib/external/<add-official-name-of-library>` and added to the git repo. Documentation of the external libraries we use can be found in the `fetchExternalLibs.sh` file located in the `/scripts` directory. This file also allows for quick restore or updating of the external libraries.
+External libraries are located at `public/lib/external/<add-official-name-of-library>` and checked in to the git repo. The libraries can be downloaded with this script:
 
 ```shell
 ./scripts/fetchExternalLibs.sh
 ```
-
-JavaScript/CSS files are included directly in `index.js` and `index.css`.
