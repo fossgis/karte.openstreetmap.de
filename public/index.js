@@ -39,6 +39,7 @@ const map = new maplibregl.Map({
   dragRotate: false,
   center: [11, 51.5], // center Germany
   zoom: 5,
+  zoomSnap: 1,
   // prevent users changing pitch with keyboard shortcuts
   maxPitch: 0,
   attributionControl: true,
