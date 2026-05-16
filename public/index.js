@@ -89,15 +89,9 @@ const setupMap = () => {
   map.addControl(basemapSwitcher);
 };
 
-/**
- * Checks if browser supports WebGL
- * Inspired by: https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/By_example/Detect_WebGL
- */
-function isWebGlActivated() {
-  const canvas = document.createElement("canvas");
-  const gl = canvas.getContext("webgl");
-  return gl instanceof WebGLRenderingContext;
-}
+const isWebGlActivated = () =>
+  document.createElement("canvas").getContext("webgl") instanceof
+  WebGLRenderingContext;
 
 /**
  * Make menu of website interactive
