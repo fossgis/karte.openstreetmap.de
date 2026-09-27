@@ -139,6 +139,14 @@
     </header>
 
     <!-- map container -->
-    <main id="map"></main>
+    <main id="map">
+      <!-- warning if WebGL not supported-->
+      <div
+        id="warning-no-webgl"
+        style="display: none; justify-content: center; align-items: center; height: 100%; font-size: xx-large; padding: 1rem;"
+      >
+        Zur Anzeige dieser Karte muss Ihr Browser WebGL unterstützen.
+      </div>
+    </main>
   </body>
 </html>
