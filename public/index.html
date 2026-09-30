@@ -71,6 +71,12 @@
               >
                 <img src="/icons/car-outline.svg" alt="Auto">
               </a>
+              <a
+                data-link-template="https://api.transitous.org/#ZOOM/LATITUDE/LONGITUDE"
+                target="_blank"
+              >
+                <img src="/icons/bus-outline.svg" alt="ÖPNV">
+              </a>
             </div>
             <div class="menu-description">
               Es gibt mehrere auf OpenStreetMap basierende Routingdienste die
@@ -100,6 +106,10 @@
               data-link-template="https://valhalla.openstreetmap.de"
               target="_blank"
               >Valhalla<span>↗</span></a
+            >
+            <a
+              data-link-template="https://api.transitous.org/#ZOOM/LATITUDE/LONGITUDE" target="_blank"
+              >Transitous<span>↗</span></a
             >
           </div>
         </div>
@@ -149,6 +159,14 @@
     </header>
 
     <!-- map container -->
-    <main id="map"></main>
+    <main id="map">
+      <!-- warning if WebGL not supported-->
+      <div
+        id="warning-no-webgl"
+        style="display: none; justify-content: center; align-items: center; height: 100%; font-size: xx-large; padding: 1rem;"
+      >
+        Zur Anzeige dieser Karte muss Ihr Browser WebGL unterstützen.
+      </div>
+    </main>
   </body>
 </html>
