@@ -1,4 +1,4 @@
-import "./lib/external/maplibre-gl/maplibre-gl.js";
+import * as maplibregl from "./lib/external/maplibre-gl/maplibre-gl.mjs";
 import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.js";
 
 import { BasemapSwitcher } from "./lib/internal/BasemapSwitcher.js";
