@@ -169,6 +169,11 @@ a {
   fill: black;
 }
 
+/* links in map attribution are underlined */
+.maplibregl-ctrl-attrib-inner a {
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .hamburger-menu {
     display: block;
