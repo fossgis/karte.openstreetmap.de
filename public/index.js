@@ -9,19 +9,15 @@ import {
 import { createSearchControl } from "./lib/internal/search.js";
 
 const setupMap = () => {
-  const attribution_osm_html_snippet =
-    'Kartendaten © <a href="https://osm.org/copyright">OpenStreetMap Mitwirkende</a>';
   const basemapConfig = {
     de: {
       displayName: "deutscher Stil",
       tiles: ["https://tile.openstreetmap.de/{z}/{x}/{y}.png"],
-      attribution: attribution_osm_html_snippet,
       thumbnail: "osmde.png",
     },
     standard: {
       displayName: "Standard",
       tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
-      attribution: attribution_osm_html_snippet,
       thumbnail: "osmorg.png",
     },
     oepnv: {
@@ -29,13 +25,21 @@ const setupMap = () => {
       tiles: [
         "https://tile.geofabrik.de/25ab8b065d8149bd90c1876384259ebf/{z}/{x}/{y}.png",
       ],
-      attribution: [
+      attribution:
         'ÖPNV Kartenstil von <a href="https://memomaps.de/en/homepage/">MeMoMaps</a> CC-BY-SA',
-        attribution_osm_html_snippet,
-      ].join(","),
       thumbnail: "oepnv.png",
     },
   };
+
+  // for customAttribution we could provide an array or a string.
+  // We choose a string because then we have control of the order, 
+  // because when providing an array, it will be auto-sorted by length
+  const customAttribution = [
+    'Kartendaten © <a href="https://openstreetmap.org/copyright">OpenStreetMap Mitwirkende</a>',
+    '<a href="https://www.openstreetmap.de/impressum/">Impressum<a>',
+    '<a href="https://maplibre.org/" target="_blank">MapLibre</a>',
+    '<a href="https://github.com/fossgis/karte.openstreetmap.de">Source Code<a>',
+  ].join(" | ");
 
   const map = new maplibregl.Map({
     container: "map",
@@ -47,7 +51,9 @@ const setupMap = () => {
     zoomSnap: 1,
     // prevent users changing pitch with keyboard shortcuts
     maxPitch: 0,
-    attributionControl: true,
+    attributionControl: {
+      customAttribution,
+    },
     maxZoom: 19,
     locale: {
       "AttributionControl.ToggleAttribution": "Quellenangabe ein-/ausblenden",
