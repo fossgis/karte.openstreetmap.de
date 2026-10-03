@@ -32,7 +32,7 @@ const setupMap = () => {
   };
 
   // for customAttribution we could provide an array or a string.
-  // We choose a string because then we have control of the order, 
+  // We choose a string because then we have control of the order,
   // because when providing an array, it will be auto-sorted by length
   const customAttribution = [
     'Kartendaten © <a href="https://openstreetmap.org/copyright">OpenStreetMap Mitwirkende</a>',
