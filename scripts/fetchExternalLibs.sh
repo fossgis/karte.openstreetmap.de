@@ -2,7 +2,7 @@
 set -euo pipefail
 
 MAPLIBRE_GL_JS_VERSION=5.24.0
-MAPLIBRE_GEOCODER_VERSION=1.5.0
+MAPLIBRE_GEOCODER_VERSION=1.9.4
 
 DIRECTORY_EXTERNAL_LIBRARIES=./public/lib/external/
 
@@ -13,5 +13,5 @@ curl -L https://unpkg.com/maplibre-gl@${MAPLIBRE_GL_JS_VERSION}/dist/maplibre-gl
 
 mkdir -p ${DIRECTORY_EXTERNAL_LIBRARIES}/maplibre-gl-geocoder/
 
-curl -L https://unpkg.com/@maplibre/maplibre-gl-geocoder@${MAPLIBRE_GEOCODER_VERSION}/dist/maplibre-gl-geocoder.min.js -o ${DIRECTORY_EXTERNAL_LIBRARIES}/maplibre-gl-geocoder/maplibre-gl-geocoder.min.js
+curl -L https://unpkg.com/@maplibre/maplibre-gl-geocoder@${MAPLIBRE_GEOCODER_VERSION}/dist/maplibre-gl-geocoder.js -o ${DIRECTORY_EXTERNAL_LIBRARIES}/maplibre-gl-geocoder/maplibre-gl-geocoder.js
 curl -L https://unpkg.com/@maplibre/maplibre-gl-geocoder@${MAPLIBRE_GEOCODER_VERSION}/dist/maplibre-gl-geocoder.css -o ${DIRECTORY_EXTERNAL_LIBRARIES}/maplibre-gl-geocoder/maplibre-gl-geocoder.css

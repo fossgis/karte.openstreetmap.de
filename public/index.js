@@ -1,5 +1,5 @@
 import "./lib/external/maplibre-gl/maplibre-gl.js";
-import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.min.js";
+import "./lib/external/maplibre-gl-geocoder/maplibre-gl-geocoder.js";
 
 import { BasemapSwitcher } from "./lib/internal/BasemapSwitcher.js";
 import {
