@@ -9,17 +9,19 @@ import {
 import { createSearchControl } from "./lib/internal/search.js";
 
 const setupMap = () => {
+  const attribution_osm_html_snippet =
+    'Kartendaten © <a href="https://osm.org/copyright">OpenStreetMap Mitwirkende</a>';
   const basemapConfig = {
     de: {
       displayName: "deutscher Stil",
       tiles: ["https://tile.openstreetmap.de/{z}/{x}/{y}.png"],
-      attribution: "Kartendaten © OpenStreetMap Mitwirkende",
+      attribution: attribution_osm_html_snippet,
       thumbnail: "osmde.png",
     },
     standard: {
       displayName: "Standard",
       tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
-      attribution: "Kartendaten © OpenStreetMap Mitwirkende",
+      attribution: attribution_osm_html_snippet,
       thumbnail: "osmorg.png",
     },
     oepnv: {
@@ -27,8 +29,10 @@ const setupMap = () => {
       tiles: [
         "https://tile.geofabrik.de/25ab8b065d8149bd90c1876384259ebf/{z}/{x}/{y}.png",
       ],
-      attribution:
-        "ÖPNV Kartenstil von memomaps.de CC-BY-SA, Kartendaten © OpenStreetMap Mitwirkende",
+      attribution: [
+        'ÖPNV Kartenstil von <a href="https://memomaps.de/en/homepage/">MeMoMaps</a> CC-BY-SA',
+        attribution_osm_html_snippet,
+      ].join(","),
       thumbnail: "oepnv.png",
     },
   };

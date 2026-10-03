@@ -169,6 +169,10 @@ a {
   fill: black;
 }
 
+.maplibregl-ctrl-attrib-inner a {
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .hamburger-menu {
     display: block;
