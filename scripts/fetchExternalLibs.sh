@@ -1,19 +1,36 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-MAPLIBRE_GL_JS_VERSION=6.4.1
-MAPLIBRE_GEOCODER_VERSION=1.9.4
+DIRECTORY_EXTERNAL_LIBRARIES=./public/lib/external
 
-DIRECTORY_EXTERNAL_LIBRARIES=./public/lib/external/
+download_asset(){
+    local LIBRARY_SLUG="${1}"
+    # remove leading @-character if existing
+    local LIBRARY_NAME="${LIBRARY_SLUG#@}"
 
-mkdir -p ${DIRECTORY_EXTERNAL_LIBRARIES}/maplibre-gl/
+    local VERSION="${2}"
+    local ASSET_NAME="${3}"
+    local OUTPUT_DIR=${DIRECTORY_EXTERNAL_LIBRARIES}/${LIBRARY_NAME}/
 
-curl -L https://unpkg.com/maplibre-gl@${MAPLIBRE_GL_JS_VERSION}/dist/maplibre-gl.mjs -o ${DIRECTORY_EXTERNAL_LIBRARIES}/maplibre-gl/maplibre-gl.mjs
-curl -L https://unpkg.com/maplibre-gl@${MAPLIBRE_GL_JS_VERSION}/dist/maplibre-gl-shared.mjs -o ${DIRECTORY_EXTERNAL_LIBRARIES}/maplibre-gl/maplibre-gl-shared.mjs
-curl -L https://unpkg.com/maplibre-gl@${MAPLIBRE_GL_JS_VERSION}/dist/maplibre-gl-worker.mjs -o ${DIRECTORY_EXTERNAL_LIBRARIES}/maplibre-gl/maplibre-gl-worker.mjs
-curl -L https://unpkg.com/maplibre-gl@${MAPLIBRE_GL_JS_VERSION}/dist/maplibre-gl.css -o ${DIRECTORY_EXTERNAL_LIBRARIES}/maplibre-gl/maplibre-gl.css
+    mkdir --parents ${OUTPUT_DIR}
 
-mkdir -p ${DIRECTORY_EXTERNAL_LIBRARIES}/maplibre-gl-geocoder/
+    local URL=https://unpkg.com/${LIBRARY_SLUG}@${VERSION}/dist/${ASSET_NAME}
 
-curl -L https://unpkg.com/@maplibre/maplibre-gl-geocoder@${MAPLIBRE_GEOCODER_VERSION}/dist/maplibre-gl-geocoder.js -o ${DIRECTORY_EXTERNAL_LIBRARIES}/maplibre-gl-geocoder/maplibre-gl-geocoder.js
-curl -L https://unpkg.com/@maplibre/maplibre-gl-geocoder@${MAPLIBRE_GEOCODER_VERSION}/dist/maplibre-gl-geocoder.css -o ${DIRECTORY_EXTERNAL_LIBRARIES}/maplibre-gl-geocoder/maplibre-gl-geocoder.css
+    curl \
+      --fail \
+      --location ${URL} \
+      --remote-name \
+      --output-dir ${OUTPUT_DIR}
+}
+
+for asset in \
+    "maplibre-gl.mjs" "maplibre-gl-shared.mjs" "maplibre-gl-worker.mjs" "maplibre-gl.css"
+do
+    download_asset maplibre-gl 6.4.1 ${asset}
+done
+
+for asset in "maplibre-gl-geocoder.js" "maplibre-gl-geocoder.css"
+do
+    download_asset @maplibre/maplibre-gl-geocoder 1.9.4 ${asset}
+done
+
