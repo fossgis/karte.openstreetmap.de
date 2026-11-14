@@ -26,11 +26,10 @@ download_asset(){
 for asset in \
     "maplibre-gl.mjs" "maplibre-gl-shared.mjs" "maplibre-gl-worker.mjs" "maplibre-gl.css"
 do
-    download_asset maplibre-gl 6.4.1 ${asset}
+    download_asset maplibre-gl 6.18.0 ${asset}
 done
 
 for asset in "maplibre-gl-geocoder.js" "maplibre-gl-geocoder.css"
 do
     download_asset @maplibre/maplibre-gl-geocoder 1.9.4 ${asset}
 done
-
