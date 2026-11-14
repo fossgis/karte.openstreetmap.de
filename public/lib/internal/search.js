@@ -1,6 +1,8 @@
 const defaultLanguage = "de";
 const countDisplayedResults = 7;
-const photonBaseUrl = "https://photon.komoot.io/api/";
+const photonBaseUrl = "https://photon.komoot.io/";
+const forwardGeocodeUrl = `${photonBaseUrl}/api`;
+const reverseGeocodeUrl = `${photonBaseUrl}/reverse`;
 
 /**
  * Convert Photon response to text string
@@ -37,11 +39,11 @@ const displayTextFromPhoton = (properties) => {
 };
 
 /**
- * Helper function to request Photon API
+ * Request Photon forward geocode API 
  */
-const requestPhoton = async (searchParams) => {
+const requestPhotonForwardGeocode = async (searchParams) => {
   const { q, lang, limit, lat, lon } = searchParams;
-  const url = new URL(photonBaseUrl);
+  const url = new URL(forwardGeocodeUrl);
 
   const params = url.searchParams;
 
@@ -55,55 +57,58 @@ const requestPhoton = async (searchParams) => {
     params.append("lon", lon);
   }
 
-  return fetch(url).then((response) => {
-    if (!response.ok) {
-      throw new Error(
-        `Photon request failed with status ${response.status}: ${response.statusText}`,
-      );
-    }
-    return response.json();
-  });
+  return fetch(url);
 };
 
 /**
- * Request Photon API for forward geocoding
+ * Convert Photon API response to Carmen GeoJSON for display
  */
-const processPhotonResponse = (geojson) => {
-  const { type, features } = geojson;
+const processPhotonResponse = (response) => {
 
-  // sanity check of received GeoJSON
-  const responseValid = type === "FeatureCollection" && Array.isArray(features);
-  if (responseValid === false) {
-    throw new Error("Response from Photon is invalid:", geojson);
+  if (!response.ok) {
+    throw new Error(
+      `Photon request failed with status ${response.status}: ${response.statusText}`,
+    );
   }
+  return response.json().then(geojson=>{
 
-  // convert Photon features to Carmen features
-  const resultFeatures = features.map((photonFeature) => {
-    const { geometry, properties } = photonFeature;
-    const { extent, name } = properties;
+    const { type, features } = geojson;
 
-    const displayText = displayTextFromPhoton(properties);
+    // sanity check of received GeoJSON
+    const responseValid = type === "FeatureCollection" && Array.isArray(features);
+    if (responseValid === false) {
+      throw new Error("Response from Photon is invalid:", geojson);
+    }
+
+    // convert Photon features to Carmen features
+    const resultFeatures = features.map((photonFeature) => {
+      const { geometry, properties } = photonFeature;
+      const { extent, name } = properties;
+
+      const displayText = displayTextFromPhoton(properties);
+
+      return {
+        type: "Feature",
+        geometry: geometry,
+
+        place_name: displayText, // text shown in search results
+        text: name, // text shown in searchbar after selection
+
+        place_type: ["place"],
+        bbox: extent,
+      };
+    });
 
     return {
-      type: "Feature",
-      geometry: geometry,
-
-      place_name: displayText, // text shown in search results
-      text: name, // text shown in searchbar after selection
-
-      place_type: ["place"],
-      bbox: extent,
+      type: "FeatureCollection",
+      features: resultFeatures,
     };
-  });
-
-  return {
-    type: "FeatureCollection",
-    features: resultFeatures,
-  };
+  })
+  
 };
 
 /**
- * Callback when user interacts with search input
+ * Callback when user adds text to search input
  */
 const forwardGeocode = (config) => {
   const { query, proximity, limit, language } = config;
@@ -117,21 +122,22 @@ const forwardGeocode = (config) => {
     lat: latitude,
   };
 
-  return requestPhoton(photonParams).then(processPhotonResponse);
+  return requestPhotonForwardGeocode(photonParams).then(processPhotonResponse);
 };
 
+/**
+ * Callback when user enters a coordinates in search input
+ */
 const reverseGeocode = (config) => {
   const {query} = config
   const [latitude, longitude] = query
-  const  reverseGeocodeUrl = "https://photon.komoot.io/reverse"
 
   const url = new URL(reverseGeocodeUrl);
   const params = url.searchParams;
   params.append("lon", longitude);
   params.append("lat", latitude);
 
-  return fetch(url).then(response => response.json()).then(processPhotonResponse)
-  
+  return fetch(url).then(processPhotonResponse)
 }
 
 export function createSearchControl(mapInstance) {
