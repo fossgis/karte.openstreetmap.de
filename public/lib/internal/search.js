@@ -39,7 +39,7 @@ const displayTextFromPhoton = (properties) => {
 };
 
 /**
- * Request Photon forward geocode API 
+ * Request Photon forward geocode API
  */
 const requestPhotonForwardGeocode = async (searchParams) => {
   const { q, lang, limit, lat, lon } = searchParams;
@@ -64,18 +64,17 @@ const requestPhotonForwardGeocode = async (searchParams) => {
  * Convert Photon API response to Carmen GeoJSON for display
  */
 const processPhotonResponse = (response) => {
-
   if (!response.ok) {
     throw new Error(
       `Photon request failed with status ${response.status}: ${response.statusText}`,
     );
   }
-  return response.json().then(geojson=>{
-
+  return response.json().then((geojson) => {
     const { type, features } = geojson;
 
     // sanity check of received GeoJSON
-    const responseValid = type === "FeatureCollection" && Array.isArray(features);
+    const responseValid =
+      type === "FeatureCollection" && Array.isArray(features);
     if (responseValid === false) {
       throw new Error("Response from Photon is invalid:", geojson);
     }
@@ -103,8 +102,7 @@ const processPhotonResponse = (response) => {
       type: "FeatureCollection",
       features: resultFeatures,
     };
-  })
-  
+  });
 };
 
 /**
@@ -129,22 +127,22 @@ const forwardGeocode = (config) => {
  * Callback when user enters a coordinates in search input
  */
 const reverseGeocode = (config) => {
-  const {query} = config
-  const [latitude, longitude] = query
+  const { query } = config;
+  const [latitude, longitude] = query;
 
   const url = new URL(reverseGeocodeUrl);
   const params = url.searchParams;
   params.append("lon", longitude);
   params.append("lat", latitude);
 
-  return fetch(url).then(processPhotonResponse)
-}
+  return fetch(url).then(processPhotonResponse);
+};
 
 export function createSearchControl(mapInstance) {
   const geocoderApi = {
     forwardGeocode: forwardGeocode,
-    reverseGeocode: reverseGeocode
-   };
+    reverseGeocode: reverseGeocode,
+  };
 
   const options = {
     maplibregl: mapInstance,
@@ -159,7 +157,7 @@ export function createSearchControl(mapInstance) {
     // see: https://github.com/maplibre/maplibre-gl-geocoder/issues/287
     showResultMarkers: false,
 
-    reverseGeocode: true
+    reverseGeocode: true,
   };
   return new MaplibreGeocoder(geocoderApi, options);
 }
