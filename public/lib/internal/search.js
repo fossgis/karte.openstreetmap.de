@@ -39,7 +39,7 @@ const displayTextFromPhoton = (properties) => {
 };
 
 /**
- * Request Photon forward geocode API
+ * Request Photon forward geocode API 
  */
 const requestPhotonForwardGeocode = async (searchParams) => {
   const { q, lang, limit, lat, lon } = searchParams;
@@ -60,23 +60,22 @@ const requestPhotonForwardGeocode = async (searchParams) => {
   return fetch(url);
 };
 
-
-
 /**
  * Convert Photon API response to Carmen GeoJSON for display
  */
 const processPhotonResponse = (response) => {
+
   if (!response.ok) {
     throw new Error(
       `Photon request failed with status ${response.status}: ${response.statusText}`,
     );
   }
-  return response.json().then((geojson) => {
+  return response.json().then(geojson=>{
+
     const { type, features } = geojson;
 
     // sanity check of received GeoJSON
-    const responseValid =
-      type === "FeatureCollection" && Array.isArray(features);
+    const responseValid = type === "FeatureCollection" && Array.isArray(features);
     if (responseValid === false) {
       throw new Error("Response from Photon is invalid:", geojson);
     }
@@ -104,7 +103,8 @@ const processPhotonResponse = (response) => {
       type: "FeatureCollection",
       features: resultFeatures,
     };
-  });
+  })
+  
 };
 
 /**
@@ -114,29 +114,37 @@ const forwardGeocode = (config) => {
   const { query, proximity, limit, language } = config;
   const [longitude, latitude] = proximity || [];
 
-  const url = new URL(forwardGeocodeUrl);
+  const photonParams = {
+    q: query,
+    lang: language,
+    limit: limit,
+    lon: longitude,
+    lat: latitude,
+  };
 
-  const params = url.searchParams;
-
-  params.append("q", query);
-  params.append("lang", language);
-  params.append("limit", limit);
-
-  const validLatLon = !!latitude && !!longitude;
-  if (validLatLon) {
-    params.append("lat", latitude);
-    params.append("lon", longitude);
-  }
-
-  return fetch(url).then(processPhotonResponse);
+  return requestPhotonForwardGeocode(photonParams).then(processPhotonResponse);
 };
 
+/**
+ * Callback when user enters a coordinates in search input
+ */
+const reverseGeocode = (config) => {
+  const {query} = config
+  const [latitude, longitude] = query
+
+  const url = new URL(reverseGeocodeUrl);
+  const params = url.searchParams;
+  params.append("lon", longitude);
+  params.append("lat", latitude);
+
+  return fetch(url).then(processPhotonResponse)
+}
 
 export function createSearchControl(mapInstance) {
   const geocoderApi = {
     forwardGeocode: forwardGeocode,
-    reverseGeocode: reverseGeocode,
-  };
+    reverseGeocode: reverseGeocode
+   };
 
   const options = {
     maplibregl: mapInstance,
@@ -151,8 +159,7 @@ export function createSearchControl(mapInstance) {
     // see: https://github.com/maplibre/maplibre-gl-geocoder/issues/287
     showResultMarkers: false,
 
-    // when user enters coordinate, reverseGeocode callback is triggered
-    reverseGeocode: true,
+    reverseGeocode: true
   };
   return new MaplibreGeocoder(geocoderApi, options);
 }
