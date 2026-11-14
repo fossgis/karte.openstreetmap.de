@@ -120,10 +120,25 @@ const forwardGeocode = (config) => {
   return requestPhoton(photonParams).then(processPhotonResponse);
 };
 
+const reverseGeocode = (config) => {
+  const {query} = config
+  const [latitude, longitude] = query
+  const  reverseGeocodeUrl = "https://photon.komoot.io/reverse"
+
+  const url = new URL(reverseGeocodeUrl);
+  const params = url.searchParams;
+  params.append("lon", longitude);
+  params.append("lat", latitude);
+
+  return fetch(url).then(response => response.json()).then(processPhotonResponse)
+  
+}
+
 export function createSearchControl(mapInstance) {
   const geocoderApi = {
     forwardGeocode: forwardGeocode,
-  };
+    reverseGeocode: reverseGeocode
+   };
 
   const options = {
     maplibregl: mapInstance,
@@ -137,6 +152,8 @@ export function createSearchControl(mapInstance) {
     // this must be set to false to avoid unwanted behaviour
     // see: https://github.com/maplibre/maplibre-gl-geocoder/issues/287
     showResultMarkers: false,
+
+    reverseGeocode: true
   };
   return new MaplibreGeocoder(geocoderApi, options);
 }
