@@ -1,6 +1,7 @@
 const defaultLanguage = "de";
 const countDisplayedResults = 7;
-const photonBaseUrl = "https://photon.komoot.io/api/";
+const photonBaseUrl = "https://photon.komoot.io/";
+const forwardGeocodeUrl = `${photonBaseUrl}/api`;
 
 /**
  * Convert Photon response to text string
@@ -37,11 +38,11 @@ const displayTextFromPhoton = (properties) => {
 };
 
 /**
- * Helper function to request Photon API
+ * Request Photon forward geocode API
  */
-const requestPhoton = async (searchParams) => {
+const requestPhotonForwardGeocode = async (searchParams) => {
   const { q, lang, limit, lat, lon } = searchParams;
-  const url = new URL(photonBaseUrl);
+  const url = new URL(forwardGeocodeUrl);
 
   const params = url.searchParams;
 
@@ -55,69 +56,76 @@ const requestPhoton = async (searchParams) => {
     params.append("lon", lon);
   }
 
-  return fetch(url).then((response) => {
-    if (!response.ok) {
-      throw new Error(
-        `Photon request failed with status ${response.status}: ${response.statusText}`,
-      );
-    }
-    return response.json();
-  });
+  return fetch(url);
 };
 
 /**
- * Request Photon API for forward geocoding
+ * Convert Photon API response to Carmen GeoJSON for display
  */
-const processPhotonResponse = (geojson) => {
-  const { type, features } = geojson;
-
-  // sanity check of received GeoJSON
-  const responseValid = type === "FeatureCollection" && Array.isArray(features);
-  if (responseValid === false) {
-    throw new Error("Response from Photon is invalid:", geojson);
+const processPhotonResponse = (response) => {
+  if (!response.ok) {
+    throw new Error(
+      `Photon request failed with status ${response.status}: ${response.statusText}`,
+    );
   }
+  return response.json().then((geojson) => {
+    const { type, features } = geojson;
 
-  // convert Photon features to Carmen features
-  const resultFeatures = features.map((photonFeature) => {
-    const { geometry, properties } = photonFeature;
-    const { extent, name } = properties;
+    // sanity check of received GeoJSON
+    const responseValid =
+      type === "FeatureCollection" && Array.isArray(features);
+    if (responseValid === false) {
+      throw new Error("Response from Photon is invalid:", geojson);
+    }
 
-    const displayText = displayTextFromPhoton(properties);
+    // convert Photon features to Carmen features
+    const resultFeatures = features.map((photonFeature) => {
+      const { geometry, properties } = photonFeature;
+      const { extent, name } = properties;
+
+      const displayText = displayTextFromPhoton(properties);
+
+      return {
+        type: "Feature",
+        geometry: geometry,
+
+        place_name: displayText, // text shown in search results
+        text: name, // text shown in searchbar after selection
+
+        place_type: ["place"],
+        bbox: extent,
+      };
+    });
 
     return {
-      type: "Feature",
-      geometry: geometry,
-
-      place_name: displayText, // text shown in search results
-      text: name, // text shown in searchbar after selection
-
-      place_type: ["place"],
-      bbox: extent,
+      type: "FeatureCollection",
+      features: resultFeatures,
     };
   });
-
-  return {
-    type: "FeatureCollection",
-    features: resultFeatures,
-  };
 };
 
 /**
- * Callback when user interacts with search input
+ * Callback when user adds text to search input
  */
 const forwardGeocode = (config) => {
   const { query, proximity, limit, language } = config;
   const [longitude, latitude] = proximity || [];
 
-  const photonParams = {
-    q: query,
-    lang: language,
-    limit: limit,
-    lon: longitude,
-    lat: latitude,
-  };
+  const url = new URL(forwardGeocodeUrl);
 
-  return requestPhoton(photonParams).then(processPhotonResponse);
+  const params = url.searchParams;
+
+  params.append("q", query);
+  params.append("lang", language);
+  params.append("limit", limit);
+
+  const validLatLon = !!latitude && !!longitude;
+  if (validLatLon) {
+    params.append("lat", latitude);
+    params.append("lon", longitude);
+  }
+
+  return fetch(url).then(processPhotonResponse);
 };
 
 export function createSearchControl(mapInstance) {
