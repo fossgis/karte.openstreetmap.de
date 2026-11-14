@@ -163,6 +163,7 @@ export function createSearchControl(mapInstance) {
     // see: https://github.com/maplibre/maplibre-gl-geocoder/issues/287
     showResultMarkers: false,
 
+    // when user enters coordinate, reverseGeocode callback is triggered
     reverseGeocode: true,
   };
   return new MaplibreGeocoder(geocoderApi, options);
