@@ -2,7 +2,6 @@ const defaultLanguage = "de";
 const countDisplayedResults = 7;
 const photonBaseUrl = "https://photon.komoot.io/";
 const forwardGeocodeUrl = `${photonBaseUrl}/api`;
-const reverseGeocodeUrl = `${photonBaseUrl}/reverse`;
 
 /**
  * Convert Photon response to text string
@@ -129,25 +128,9 @@ const forwardGeocode = (config) => {
   return fetch(url).then(processPhotonResponse);
 };
 
-/**
- * Callback when user enters coordinates in search input
- */
-const reverseGeocode = (config) => {
-  const { query } = config;
-  const [latitude, longitude] = query;
-
-  const url = new URL(reverseGeocodeUrl);
-  const params = url.searchParams;
-  params.append("lon", longitude);
-  params.append("lat", latitude);
-
-  return fetch(url).then(processPhotonResponse);
-};
-
 export function createSearchControl(mapInstance) {
   const geocoderApi = {
     forwardGeocode: forwardGeocode,
-    reverseGeocode: reverseGeocode,
   };
 
   const options = {
@@ -162,9 +145,6 @@ export function createSearchControl(mapInstance) {
     // this must be set to false to avoid unwanted behaviour
     // see: https://github.com/maplibre/maplibre-gl-geocoder/issues/287
     showResultMarkers: false,
-
-    // when user enters coordinate, reverseGeocode callback is triggered
-    reverseGeocode: true,
   };
   return new MaplibreGeocoder(geocoderApi, options);
 }
