@@ -112,19 +112,25 @@ const forwardGeocode = (config) => {
   const { query, proximity, limit, language } = config;
   const [longitude, latitude] = proximity || [];
 
-  const photonParams = {
-    q: query,
-    lang: language,
-    limit: limit,
-    lon: longitude,
-    lat: latitude,
-  };
+  const url = new URL(forwardGeocodeUrl);
 
-  return requestPhotonForwardGeocode(photonParams).then(processPhotonResponse);
+  const params = url.searchParams;
+
+  params.append("q", query);
+  params.append("lang", language);
+  params.append("limit", limit);
+
+  const validLatLon = !!latitude && !!longitude;
+  if (validLatLon) {
+    params.append("lat", latitude);
+    params.append("lon", longitude);
+  }
+
+  return fetch(url).then(processPhotonResponse);
 };
 
 /**
- * Callback when user enters a coordinates in search input
+ * Callback when user enters coordinates in search input
  */
 const reverseGeocode = (config) => {
   const { query } = config;
@@ -157,6 +163,7 @@ export function createSearchControl(mapInstance) {
     // see: https://github.com/maplibre/maplibre-gl-geocoder/issues/287
     showResultMarkers: false,
 
+    // when user enters coordinate, reverseGeocode callback is triggered
     reverseGeocode: true,
   };
   return new MaplibreGeocoder(geocoderApi, options);
