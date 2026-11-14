@@ -39,28 +39,6 @@ const displayTextFromPhoton = (properties) => {
 };
 
 /**
- * Request Photon forward geocode API
- */
-const requestPhotonForwardGeocode = async (searchParams) => {
-  const { q, lang, limit, lat, lon } = searchParams;
-  const url = new URL(forwardGeocodeUrl);
-
-  const params = url.searchParams;
-
-  params.append("q", q);
-  params.append("lang", lang);
-  params.append("limit", limit);
-
-  const validLatLon = !!lat && !!lon;
-  if (validLatLon) {
-    params.append("lat", lat);
-    params.append("lon", lon);
-  }
-
-  return fetch(url);
-};
-
-/**
  * Convert Photon API response to Carmen GeoJSON for display
  */
 const processPhotonResponse = (response) => {
