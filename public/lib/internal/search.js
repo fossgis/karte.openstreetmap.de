@@ -112,15 +112,21 @@ const forwardGeocode = (config) => {
   const { query, proximity, limit, language } = config;
   const [longitude, latitude] = proximity || [];
 
-  const photonParams = {
-    q: query,
-    lang: language,
-    limit: limit,
-    lon: longitude,
-    lat: latitude,
-  };
+  const url = new URL(forwardGeocodeUrl);
 
-  return requestPhotonForwardGeocode(photonParams).then(processPhotonResponse);
+  const params = url.searchParams;
+
+  params.append("q", query);
+  params.append("lang", language);
+  params.append("limit", limit);
+
+  const validLatLon = !!latitude && !!longitude;
+  if (validLatLon) {
+    params.append("lat", latitude);
+    params.append("lon", longitude);
+  }
+
+  return fetch(url).then(processPhotonResponse);
 };
 
 /**
