@@ -38,6 +38,8 @@
   --menu-radius: 3px;
   --menu-padding: 4px 12px;
   --header-height: 54px;
+  /* media query changes this value dynamically so that JavaScript can read it */
+  --current-breakpoint: desktop;
 }
 
 body {
@@ -175,6 +177,11 @@ a {
 }
 
 @media (max-width: 768px) {
+  :root {
+    /* media query changes this value dynamically so that JavaScript can read it */
+    --current-breakpoint: mobile;
+  }
+
   .hamburger-menu {
     display: block;
     font-size: 1.5rem;
@@ -243,8 +250,8 @@ a {
   }
 }
 
-/* 
- * Basemap Switcher 
+/*
+ * Basemap Switcher
  */
 
 .basemap-switcher-container {

@@ -3,6 +3,7 @@ import "./lib/external/maplibre/maplibre-gl-geocoder/maplibre-gl-geocoder.js";
 
 import { BasemapSwitcher } from "./lib/internal/BasemapSwitcher.js";
 import {
+  isMobile,
   setGlobePermalinkUpdate,
   setupLinkUpdate,
 } from "./lib/internal/mapUtils.js";
@@ -83,7 +84,11 @@ const setupMap = () => {
     map.addLayer({ id, source: id, type: "raster" });
   });
 
-  map.addControl(createSearchControl(maplibregl));
+  const searchControl = createSearchControl({
+    mapInstance: maplibregl,
+    collapsed: isMobile(),
+  });
+  map.addControl(searchControl);
 
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }));
 

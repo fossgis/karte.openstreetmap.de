@@ -122,7 +122,8 @@ const reverseGeocode = (config) => {
   return fetch(url).then(processPhotonResponse);
 };
 
-export function createSearchControl(mapInstance) {
+export function createSearchControl(config) {
+  const { mapInstance, collapsed } = config;
   const geocoderApi = {
     forwardGeocode: forwardGeocode,
     reverseGeocode: reverseGeocode,
@@ -132,7 +133,7 @@ export function createSearchControl(mapInstance) {
     maplibregl: mapInstance,
     limit: countDisplayedResults,
     language: defaultLanguage,
-    collapsed: true,
+    collapsed: collapsed,
 
     // needed for autocomplete
     showResultsWhileTyping: true,

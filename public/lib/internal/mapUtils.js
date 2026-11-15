@@ -68,4 +68,24 @@ const setGlobePermalinkUpdate = (mapLibreMap) => {
   });
 };
 
-export { setupLinkUpdate, setGlobePermalinkUpdate };
+/**
+ * Checks if the website is currently on mobile or desktop mode.
+ *
+ * Determines the state by reading a CSS variable that is dynamically set by
+ * the CSS media query.
+ */
+const isMobile = () => {
+  const breakPointValue = getComputedStyle(document.documentElement)
+    .getPropertyValue("--current-breakpoint")
+    .trim();
+
+  if (!["desktop", "mobile"].includes(breakPointValue)) {
+    throw new Error(
+      "Could not determine if website is in mobile or desktop mode.",
+    );
+  }
+
+  return breakPointValue === "mobile";
+};
+
+export { setupLinkUpdate, setGlobePermalinkUpdate, isMobile };
