@@ -171,6 +171,14 @@ a {
   fill: black;
 }
 
+/* Ensures search result is fully shown and not cut off*/
+.maplibregl-ctrl-geocoder--result-title {
+  white-space: unset;
+}
+.maplibregl-ctrl-geocoder--result-address {
+  white-space: unset;
+}
+
 /* links in map attribution are underlined */
 .maplibregl-ctrl-attrib-inner a {
   text-decoration: underline;
